@@ -7,8 +7,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.SortedMap;
 
 
 public class GetGPSfromApi {
@@ -22,12 +20,12 @@ public class GetGPSfromApi {
             put("lng", root.findPath("lng").asDouble());
         }};
     }
-    public static double distanceBetweenAddresses(Address addressOne, Address addressTwo){
+    public static double distanceBetweenAddresses(AddressForGPS addressForGPSOne, AddressForGPS addressForGPSTwo){
         HashMap<String, Double> posOne = new HashMap<>();
         HashMap<String, Double> posTwo = new HashMap<>();
         try{
-            posOne = getLocationFromCityStreetNumber(addressOne.getCityName(), addressOne.getStreetName(),addressOne.getNumber());
-            posTwo = getLocationFromCityStreetNumber(addressTwo.getCityName(), addressTwo.getStreetName(),addressTwo.getNumber());
+            posOne = getLocationFromCityStreetNumber(addressForGPSOne.getCityName(), addressForGPSOne.getStreetName(), addressForGPSOne.getNumber());
+            posTwo = getLocationFromCityStreetNumber(addressForGPSTwo.getCityName(), addressForGPSTwo.getStreetName(), addressForGPSTwo.getNumber());
         } catch (Exception e) {
             e.printStackTrace();
         }

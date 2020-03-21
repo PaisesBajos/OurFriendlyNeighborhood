@@ -1,6 +1,6 @@
 package de.awacademy.ourblog.utils;
 
-public class Address {
+public class AddressForGPS {
     private String cityName;
     private String streetName;
     private int number;
