@@ -182,16 +182,17 @@ public class PostController {
         User userMaja = new User();
         userMaja.setUsername("Maja");
         userMaja.setPassword("Dummy");
-        userMaja.setAdmin(true);
+        userMaja.setFirstName("Maja");
+        userMaja.setLastName("Francetic");
+        userMaja.setLocation("80637, München");
 
         User userMichael = new User();
         userMichael.setUsername("Michael");
         userMichael.setPassword("Dummy");
-        userMichael.setAdmin(true);
+        userMichael.setFirstName("Michael");
+        userMichael.setFirstName("Holland");
+        userMichael.setLocation("80333, München");
 
-        User userMarko = new User();
-        userMarko.setUsername("Marko");
-        userMarko.setPassword("Dummy");
 
         Post postParis = new Post();
         postParis.setTitle("Paris");
@@ -241,13 +242,13 @@ public class PostController {
         commentTwo.setPostedAt(Instant.now().minusSeconds(600));
         commentTwo.setText("Beautiful!");
         commentTwo.setPost(postPrague);
-        commentTwo.setUser(userMarko);
+        commentTwo.setUser(userMaja);
 
         Comment commentThree = new Comment();
         commentThree.setPostedAt(Instant.now().minusSeconds(700));
         commentThree.setText("Wonderful!");
         commentThree.setPost(postUmag);
-        commentThree.setUser(userMarko);
+        commentThree.setUser(userMaja);
 
         Comment commentFour = new Comment();
         commentFour.setPostedAt(Instant.now().minusSeconds(800));
@@ -255,7 +256,6 @@ public class PostController {
         commentFour.setPost(postUmag);
         commentFour.setUser(userMichael);
 
-        userRepository.save(userMarko);
         userRepository.save(userMichael);
         userRepository.save(userMaja);
 

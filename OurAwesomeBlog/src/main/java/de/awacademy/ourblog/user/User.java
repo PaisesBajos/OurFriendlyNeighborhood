@@ -1,7 +1,5 @@
 package de.awacademy.ourblog.user;
 
-import de.awacademy.ourblog.comment.Comment;
-import de.awacademy.ourblog.post.Post;
 import de.awacademy.ourblog.session.Session;
 
 import javax.persistence.Entity;
@@ -28,6 +26,8 @@ public class User {
 
     private boolean isHelper;
 
+    private boolean isAdmin;
+
     @OneToMany(mappedBy = "user")
     private List<Session> sessionList;
 
@@ -40,6 +40,8 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+        this.isAdmin = false;
+        this.isHelper = true;
     }
 
     public String getUsername() {
@@ -116,5 +118,13 @@ public class User {
 
     public List<Task> getTaskList() {
         return taskList;
+    }
+
+    public boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 }
