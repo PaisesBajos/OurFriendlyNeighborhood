@@ -216,6 +216,16 @@ public class TaskController {
         taskBlumenGiessen.setAccepted(false);
         taskBlumenGiessen.setPlz("40590");
 
+        Task taskblumengiessenZwei = new Task();
+        taskblumengiessenZwei.setTitle("Blumen Gießen");
+        taskblumengiessenZwei.setText("Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.");
+        taskblumengiessenZwei.setHelpUser(userMichael);
+        taskblumengiessenZwei.setRequestUser(userMaja);
+        taskblumengiessenZwei.setCreatedAt(Instant.now().minusSeconds(100));
+        taskblumengiessenZwei.setDueDate(Instant.now().plusSeconds(90000));
+        taskblumengiessenZwei.setAccepted(false);
+        taskblumengiessenZwei.setPlz("40590");
+
 
         Task taskEinkaufen = new Task();
         taskEinkaufen.setTitle("Kleiner Einkauf");
@@ -228,6 +238,7 @@ public class TaskController {
         taskEinkaufen.setPlz("76133");
 
         taskRepository.save(taskEinkaufen);
+        taskRepository.save(taskblumengiessenZwei);
         taskRepository.save(taskBlumenGiessen);
 
 //
