@@ -17,18 +17,22 @@ public class User {
     @GeneratedValue
     private long id;
 
-    private Boolean admin;
     private String username;
     private String password;
+
+    private String firstName;
+
+    private String lastName;
+
+    private String location;
+
+    private boolean isHelper;
 
     @OneToMany(mappedBy = "user")
     private List<Session> sessionList;
 
     @OneToMany(mappedBy = "user")
-    private List<Post> postList;
-
-    @OneToMany(mappedBy = "user")
-    private List<Comment> comments;
+    private List<Task> taskList;
 
     public User() {
     }
@@ -36,7 +40,6 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.admin = false;
     }
 
     public String getUsername() {
@@ -47,24 +50,12 @@ public class User {
         return password;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
-
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public Boolean getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Boolean admin) {
-        this.admin = admin;
     }
 
     public void setUsername(String username) {
@@ -83,15 +74,47 @@ public class User {
         this.sessionList = sessionList;
     }
 
-    public List<Post> getPostList() {
-        return postList;
+    public List<Task> getTask() {
+        return taskList;
     }
 
-    public void setPostList(List<Post> postList) {
-        this.postList = postList;
+    public void setTaskList(List<Task> taskList) {
+        this.taskList = taskList;
     }
 
-    public void setComments(List<Comment> messages) {
-        this.comments = messages;
+    public boolean isHelper() {
+        return isHelper;
+    }
+
+    public void setHelper(boolean helper) {
+        isHelper = helper;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public List<Task> getTaskList() {
+        return taskList;
     }
 }
