@@ -1,6 +1,6 @@
 package de.awacademy.ourblog.user;
 
-import de.awacademy.ourblog.post.Post;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,30 +67,30 @@ public class UserController {
         return "redirect:/login";
     }
 
-    /**
-     * This method displays the admin page
-     *
-     * @param sessionUser is the logged-in user
-     * @param model       contains the attributes used for communication between the Java code and the
-     *                    HTML template
-     * @return the return value is the layoutAdmin.html, or a redirect to the post page, in case
-     * the sessionUser is not an admin
-     */
-    @GetMapping("/admin")
-    public String admin(@RequestParam(required = false) String postImage, @ModelAttribute("sessionUser") User sessionUser, Model model) {
-        if (sessionUser != null && sessionUser.getAdmin()) {
-            Post post = new Post();
-            if (postImage != null) {
-                post.setUrlToImage(postImage);
-            }
-            model.addAttribute("postImage", postImage);
-            model.addAttribute("post", post);
-            List<User> users = userRepository.findAll();
-            model.addAttribute("users", users);
-            return "layoutAdmin";
-        }
-        return "redirect:/post";
-    }
+//    /**
+//     * This method displays the admin page
+//     *
+//     * @param sessionUser is the logged-in user
+//     * @param model       contains the attributes used for communication between the Java code and the
+//     *                    HTML template
+//     * @return the return value is the layoutAdmin.html, or a redirect to the post page, in case
+//     * the sessionUser is not an admin
+//     */
+//    @GetMapping("/admin")
+//    public String admin(@RequestParam(required = false) String postImage, @ModelAttribute("sessionUser") User sessionUser, Model model) {
+//        if (sessionUser != null && sessionUser.getAdmin()) {
+//            Post post = new Post();
+//            if (postImage != null) {
+//                post.setUrlToImage(postImage);
+//            }
+//            model.addAttribute("postImage", postImage);
+//            model.addAttribute("post", post);
+//            List<User> users = userRepository.findAll();
+//            model.addAttribute("users", users);
+//            return "layoutAdmin";
+//        }
+//        return "redirect:/post";
+//    }
 
     /**
      * This method defines a user as an admin

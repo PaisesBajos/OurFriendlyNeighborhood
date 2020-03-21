@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PostRepository extends CrudRepository<Post, Long> {
+public interface TaskRepository extends CrudRepository<Task, Long> {
 
-    List<Post> findAllByOrderByPostedAtDesc();
+    List<Task> findAllByOrderByCreatedAtDesc();
 
-    Optional<Post> findById(Long id);
+    Optional<Task> findById(Long id);
 }

@@ -33,11 +33,11 @@ body {
 
 /*Comments*/
 [id^=comments] a.collapsed:after {
-    content: '+ Show Comments';
+    content: '+ Show Helper';
 }
 
 [id^=comments] a:not(.collapsed).collapseButton:after {
-    content: '- Hide Comments';
+    content: '- Hide Helper';
 }
 
 .media-list .media img {

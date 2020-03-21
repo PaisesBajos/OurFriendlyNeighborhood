@@ -1,6 +1,6 @@
 package de.awacademy.ourblog.task;
 
-import de.awacademy.ourblog.comment.Comment;
+
 import de.awacademy.ourblog.user.User;
 import de.awacademy.ourblog.utils.DateTimeConverter;
 import org.hibernate.annotations.Cascade;
@@ -21,7 +21,7 @@ public class Task {
     @ManyToOne
     private User requestUser;
 
-    @OneToOne
+    @ManyToOne
     private User helpUser;
 
     private String title;
