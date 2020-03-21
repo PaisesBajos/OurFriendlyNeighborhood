@@ -17,7 +17,6 @@
             <div th:each="task: ${tasks}">
 
                 <div class="card mb-4">
-                    <!--                    <img class="card-img-top" th:if="${task.getUrlToImage() != null}"-->
                     <!--                         th:src="@{/images/{postId}(postId = ${post.urlToImage})}" alt="">-->
                     <div class="card-body" th:id="'postSection_'+${task.id}">
 
@@ -42,6 +41,20 @@
                                     <!--                                        </button>-->
                                     <!--                                    </form>-->
                                 </div>
+
+<!--                                   <form th:if="${sessionUser!=null and sessionUser.admin == true}"-->
+<!--                                     th:object="${taskDTO}"-->
+<!--                                    modelAttribute="taskDTO" th:action="@{/taskEdit}" method="post">-->
+<!--                                    <input type="hidden" name="postId" th:value="${post.id}">-->
+
+                                <form th:if="${sessionUser!=null and !task.isAccepted()}" th:action="@{/acceptTask}"
+                                      th:object="${taskDTO}"  modelAttribute="taskDTO"  method="post">
+                                    <div class="form-group">
+                                            <input type="hidden" name="taskId" th:value="${task.id}">
+                                        <!--                                <div class="col-sm">-->
+                                        <input class="btn btn-primary" type="submit" value="Accept Task">
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <p class="collapse" th:id="'collapsePost_'+${task.id}" aria-expanded="false"
