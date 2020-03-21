@@ -25,6 +25,7 @@
                                 <div class="col-sm">
                                     <h2 class="card-title"><a th:text="${task.title}"></a></h2>
                                 </div>
+
                                 <div class="col-sm">
                                     <!--                                    <form th:if="${sessionUser!=null and sessionUser.admin == true}"-->
                                     <!--                                          th:object="${taskDTO}"-->
@@ -42,21 +43,19 @@
                                     <!--                                    </form>-->
                                 </div>
 
-<!--                                   <form th:if="${sessionUser!=null and sessionUser.admin == true}"-->
-<!--                                     th:object="${taskDTO}"-->
-<!--                                    modelAttribute="taskDTO" th:action="@{/taskEdit}" method="post">-->
-<!--                                    <input type="hidden" name="postId" th:value="${post.id}">-->
-
                                 <form th:if="${sessionUser!=null and sessionUser.getHelper() and !task.isAccepted()}" th:action="@{/acceptTask}"
                                       th:object="${taskDTO}"  modelAttribute="taskDTO"  method="post">
                                     <div class="form-group">
                                             <input type="hidden" name="taskId" th:value="${task.id}">
-                                        <!--                                <div class="col-sm">-->
                                         <input class="btn btn-primary" type="submit" value="Accept Task">
                                     </div>
                                 </form>
                             </div>
                         </div>
+                        <p><strong>Due date:  </strong><a th:text="${task.getDueDateFormatted()}"></a>
+                        </p>
+                        <p><strong>Postal code:  </strong><a th:text="${task.getPlz()}"></a>
+                        </p>
                         <p class="collapse" th:id="'collapsePost_'+${task.id}" aria-expanded="false"
                            th:text="${task.text}"></p>
                         <a role="button" class="btn btn-primary collapsed collapseButton" data-toggle="collapse"
@@ -64,10 +63,22 @@
                            aria-expanded="false" th:aria-controls="'collapsePost_'+${task.id}"></a>
                     </div>
                     <!--Comment Section-->
-                    <div class="card-footer" th:id="'comments_'+${task.id}">
+                    <div th:if="${task.isAccepted()}" class="card-footer" th:id="'comments_'+${task.id}">
                         <div class="collapse" th:id="'commentSection_'+${task.id}" aria-expanded="false">
+                            <div class="text-muted">
+                                <p>
+                                    Helper:
+                                    <strong class="text-success"><a th:text="${task.helpUser.username}"></a></strong>
+                                </p>
+                            </div>
 
-                            <!--                            SHOW WHO SIGNED UP FOR TASK-->
+                                    <!--                                <a th:text="${task.helpUser.username}"></a>--
+                                                                    </p>
+                                                                   >
+                                                                </div>
+
+
+                                                                                            SHOW WHO SIGNED UP FOR TASK-->
 
 
                             <!--                            <ul class="media-list">-->

@@ -7,6 +7,7 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 import static org.hibernate.annotations.CascadeType.DELETE;
@@ -124,5 +125,9 @@ public class Task {
 
     public String getPostedAtFormatted() {
         return DateTimeConverter.getConvertedDateTime(createdAt);
+    }
+
+    public String getDueDateFormatted() {
+        return DateTimeConverter.getConvertedDateTime(dueDate);
     }
 }

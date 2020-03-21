@@ -194,6 +194,7 @@ public class TaskController {
         userMaja.setFirstName("Maja");
         userMaja.setLastName("Francetic");
         userMaja.setLocation("80637, München");
+        userMaja.setHelper(true);
 
         User userMichael = new User();
         userMichael.setUsername("Michael");
@@ -201,6 +202,7 @@ public class TaskController {
         userMichael.setFirstName("Michael");
         userMichael.setFirstName("Holland");
         userMichael.setLocation("80333, München");
+        userMaja.setLocation("80637, München");
 
         userRepository.save(userMaja);
         userRepository.save(userMichael);
