@@ -1,7 +1,7 @@
 package de.awacademy.ourblog.comment;
 
-import de.awacademy.ourblog.post.Post;
-import de.awacademy.ourblog.task.PostRepository;
+
+import de.awacademy.ourblog.task.TaskRepository;
 import de.awacademy.ourblog.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,13 +14,13 @@ import java.time.Instant;
 @Controller
 public class CommentController {
 
-    private CommentRepository commentRepository;
-    private PostRepository postRepository;
+//    private CommentRepository commentRepository;
+    private TaskRepository taskRepository;
 
     @Autowired
-    public CommentController(CommentRepository commentRepository, PostRepository postRepository) {
-        this.commentRepository = commentRepository;
-        this.postRepository = postRepository;
+    public CommentController( TaskRepository taskRepository) {
+
+        this.taskRepository = taskRepository;
     }
 
     /**
@@ -32,34 +32,34 @@ public class CommentController {
      * @param postId is the ID of the new post that will be created
      * @return the method returns a redirect to the post page
      */
-    @PostMapping("/post/comment/{postId}")
-    public String newComment(@Valid @ModelAttribute("comment") CommentDTO commentDTO, BindingResult bindingResult, @ModelAttribute("sessionUser") User sessionUser, @PathVariable long postId) {
-        if (bindingResult.hasErrors()) {
-            return "redirect:/post";
-        }
-        if (postRepository.findById(postId).isPresent()) {
-            Post post = postRepository.findById(postId).get();
-            Comment comment = new Comment(sessionUser, commentDTO.getText(), Instant.now(), post);
-            commentRepository.save(comment);
-        }
+//    @PostMapping("/post/comment/{postId}")
+//    public String newComment(@Valid @ModelAttribute("comment") CommentDTO commentDTO, BindingResult bindingResult, @ModelAttribute("sessionUser") User sessionUser, @PathVariable long postId) {
+//        if (bindingResult.hasErrors()) {
+//            return "redirect:/post";
+//        }
+//        if (taskRepository.findById(postId).isPresent()) {
+//            Task task = taskRepository.findById(postId).get();
+//            Comment comment = new Comment(sessionUser, commentDTO.getText(), Instant.now(), post);
+//            commentRepository.save(comment);
+//        }
+//
+//        return "redirect:/post";
+//    }
 
-        return "redirect:/post";
-    }
-
-    /**
-     * This method deletes the comment
-     *
-     * @param commentDTO is a comment DTO object, that collects the input from the comment form
-     * @param sessionUser is the logged-in user
-     * @return the method returns a redirect to the post page
-     */
-    @PostMapping("/commentDelete")
-    public String delete(@ModelAttribute("commentDTO") CommentDTO commentDTO, @ModelAttribute("sessionUser") User sessionUser) {
-        Comment comment = commentRepository.findById(commentDTO.getCommentId()).orElseThrow();
-        if (comment.getUser() == sessionUser || sessionUser.getAdmin()) {
-            commentRepository.delete(comment);
-        }
-
-        return "redirect:/post";
-    }
+//    /**
+//     * This method deletes the comment
+//     *
+//     * @param commentDTO is a comment DTO object, that collects the input from the comment form
+//     * @param sessionUser is the logged-in user
+//     * @return the method returns a redirect to the post page
+//     */
+//    @PostMapping("/commentDelete")
+//    public String delete(@ModelAttribute("commentDTO") CommentDTO commentDTO, @ModelAttribute("sessionUser") User sessionUser) {
+//        Comment comment = commentRepository.findById(commentDTO.getCommentId()).orElseThrow();
+//        if (comment.getUser() == sessionUser || sessionUser.getAdmin()) {
+//            commentRepository.delete(comment);
+//        }
+//
+//        return "redirect:/post";
+//    }
 }

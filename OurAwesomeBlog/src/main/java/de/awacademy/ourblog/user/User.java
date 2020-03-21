@@ -1,11 +1,9 @@
 package de.awacademy.ourblog.user;
 
 import de.awacademy.ourblog.session.Session;
+import de.awacademy.ourblog.task.Task;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -31,8 +29,11 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Session> sessionList;
 
-    @OneToMany(mappedBy = "user")
-    private List<Task> taskList;
+    @OneToMany(mappedBy = "requestUser")
+    private List<Task> requestedTaskList;
+
+    @OneToMany(mappedBy = "helpUser")
+    private List<Task> helperTaskList;
 
     public User() {
     }
@@ -76,13 +77,7 @@ public class User {
         this.sessionList = sessionList;
     }
 
-    public List<Task> getTask() {
-        return taskList;
-    }
 
-    public void setTaskList(List<Task> taskList) {
-        this.taskList = taskList;
-    }
 
     public boolean isHelper() {
         return isHelper;
@@ -116,9 +111,6 @@ public class User {
         this.location = location;
     }
 
-    public List<Task> getTaskList() {
-        return taskList;
-    }
 
     public boolean getAdmin() {
         return isAdmin;
@@ -126,5 +118,25 @@ public class User {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public List<Task> getRequestedTaskList() {
+        return requestedTaskList;
+    }
+
+    public void setRequestedTaskList(List<Task> requestedTaskList) {
+        this.requestedTaskList = requestedTaskList;
+    }
+
+    public List<Task> getHelperTaskList() {
+        return helperTaskList;
+    }
+
+    public void setHelperTaskList(List<Task> helperTaskList) {
+        this.helperTaskList = helperTaskList;
     }
 }

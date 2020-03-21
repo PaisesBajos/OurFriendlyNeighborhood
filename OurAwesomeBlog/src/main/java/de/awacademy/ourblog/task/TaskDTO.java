@@ -26,17 +26,12 @@ public class TaskDTO {
         this.text = text;
     }
 
-
-    public long getPostId() {
-        return taskId;
-    }
-
-    public void setPostId(long postId) {
-        this.taskId = postId;
-    }
-
     public String getText() {
         return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public String getTitle() {
@@ -47,8 +42,11 @@ public class TaskDTO {
         this.title = title;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public long getTaskId() {
+        return taskId;
     }
 
+    public void setTaskId(long taskId) {
+        this.taskId = taskId;
+    }
 }

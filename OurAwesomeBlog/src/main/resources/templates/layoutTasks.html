@@ -12,7 +12,7 @@
 
         <!-- Blog Entries Column -->
         <div class="col-md-12">
-            <h1 class="my-4">Travel Posts</h1>
+            <h1 class="my-4">Tasks</h1>
             <!-- Blog Post -->
             <div th:each="task: ${tasks}">
 
@@ -110,7 +110,7 @@
                     <!-- Post Footer-->
                     <div class="card-footer text-muted">
                         Posted on <a th:text="${task.getPostedAtFormatted()}"></a> by
-                        <strong class="text-success"><a th:text="${task.user.username}"></a></strong>
+                        <strong class="text-success"><a th:text="${task.requestUser.username}"></a></strong>
                     </div>
 
                 </div>
