@@ -1,7 +1,7 @@
 package de.awacademy.ourblog.comment;
 
 import de.awacademy.ourblog.post.Post;
-import de.awacademy.ourblog.post.PostRepository;
+import de.awacademy.ourblog.task.PostRepository;
 import de.awacademy.ourblog.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

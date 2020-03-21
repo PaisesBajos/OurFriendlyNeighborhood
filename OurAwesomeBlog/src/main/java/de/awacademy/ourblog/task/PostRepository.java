@@ -1,4 +1,4 @@
-package de.awacademy.ourblog.post;
+package de.awacademy.ourblog.task;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
