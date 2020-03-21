@@ -2,7 +2,6 @@ package de.awacademy.ourblog.task;
 
 
 //import de.awacademy.ourblog.comment.CommentRepository;
-
 import de.awacademy.ourblog.user.User;
 import de.awacademy.ourblog.user.UserRepository;
 import de.awacademy.ourblog.utils.FileUploader;
@@ -22,11 +21,11 @@ import java.util.Optional;
 public class TaskController {
 
     private TaskRepository taskRepository;
-    //    private CommentRepository commentRepository;
+//    private CommentRepository commentRepository;
     private UserRepository userRepository;
 
     @Autowired
-    public TaskController(TaskRepository taskRepository, UserRepository userRepository) {
+    public TaskController(TaskRepository taskRepository,UserRepository userRepository) {
         this.taskRepository = taskRepository;
 
         this.userRepository = userRepository;
@@ -109,27 +108,27 @@ public class TaskController {
 //        return "redirect:/post";
 //    }
 
-    /**
-     * This method handels the helper user accepting a selected task
-     *
-     * @param taskDTO            is a task DTO object, that collects the input from the task form
-     * @param sessionUser        is the logged-in user
-     * @return the return value is a redirect to the task page
-     */
-    @PostMapping("/acceptTask")
-    public String acceptTask(@ModelAttribute("taskDTO") TaskDTO taskDTO, @ModelAttribute("sessionUser") User sessionUser) {
-        if (sessionUser!= null && sessionUser.getHelper()) {
-            Optional<Task> optionalTask = taskRepository.findById(taskDTO.getTaskId());
-            if (optionalTask.isPresent()) {
-                Task task = optionalTask.get();
-                task.setHelpUser(sessionUser);
-                task.setAccepted(true);
-                taskRepository.save(task);
-            }
-        }
-        return "redirect:/task";
-    }
-
+//    /**
+//     * This method edits a selected post
+//     *
+//     * @param postDTO            is a post DTO object, that collects the input from the comment form
+//     * @param sessionUser        is the logged-in user
+//     * @param redirectAttributes is a postID attribute
+//     * @return the return value is either a redirect to the postEdit page, or
+//     * a redirect to the post page (in case the sessionUser is not an admin)
+//     */
+//    @PostMapping("/postEdit")
+//    public String editPost(@ModelAttribute("postDTO") PostDTO postDTO, @ModelAttribute("sessionUser") User sessionUser, RedirectAttributes redirectAttributes) {
+//        if (sessionUser.getAdmin()) {
+//            Optional<Post> post = taskRepository.findById(postDTO.getPostId());
+//            if (post.isPresent()) {
+//                redirectAttributes.addAttribute("postId", post.get());
+//                return "redirect:/postEdit/";
+//            }
+//        }
+//        return "redirect:/post";
+//    }
+//
 //    /**
 //     * This method is used for displaying a form for editing a post
 //     *
@@ -194,7 +193,6 @@ public class TaskController {
         userMaja.setFirstName("Maja");
         userMaja.setLastName("Francetic");
         userMaja.setLocation("80637, München");
-        userMaja.setHelper(true);
 
         User userMichael = new User();
         userMichael.setUsername("Michael");
@@ -202,7 +200,7 @@ public class TaskController {
         userMichael.setFirstName("Michael");
         userMichael.setFirstName("Holland");
         userMichael.setLocation("80333, München");
-        userMaja.setLocation("80637, München");
+
 
         userRepository.save(userMaja);
         userRepository.save(userMichael);
