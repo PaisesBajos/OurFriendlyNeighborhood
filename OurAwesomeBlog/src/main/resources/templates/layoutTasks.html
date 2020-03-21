@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: headerfiles">
+    <title id="pageTitle">Posts</title>
+</head>
+<body>
+<!-- Navigation -->
+<nav th:replace="layout :: navbar"></nav>
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-12">
+            <h1 class="my-4">Travel Posts</h1>
+            <!-- Blog Post -->
+            <div th:each="task: ${tasks}">
+
+                <div class="card mb-4">
+                    <!--                    <img class="card-img-top" th:if="${task.getUrlToImage() != null}"-->
+                    <!--                         th:src="@{/images/{postId}(postId = ${post.urlToImage})}" alt="">-->
+                    <div class="card-body" th:id="'postSection_'+${task.id}">
+
+                        <div class="container">
+                            <div id="heading" class="row">
+                                <div class="col-sm">
+                                    <h2 class="card-title"><a th:text="${task.title}"></a></h2>
+                                </div>
+                                <div class="col-sm">
+                                    <!--                                    <form th:if="${sessionUser!=null and sessionUser.admin == true}"-->
+                                    <!--                                          th:object="${taskDTO}"-->
+                                    <!--                                          modelAttribute="taskDTO" th:action="@{/taskEdit}" method="post">-->
+                                    <!--                                        <input type="hidden" name="postId" th:value="${post.id}">-->
+                                    <!--                                        <button type="submit" class="btn btn-info float-right">edit</button>-->
+                                    <!--                                    </form>-->
+                                    <!--                                    <form th:if="${sessionUser!=null and sessionUser.admin == true}"-->
+                                    <!--                                          th:object="${postDTO}"-->
+                                    <!--                                          modelAttribute="postDTO" th:action="@{/postDelete}" method="post">-->
+                                    <!--                                        <input type="hidden" name="postId" th:value="${post.id}">-->
+                                    <!--                                        <button id="deletePostButton" type="submit" class="btn btn-info float-right">-->
+                                    <!--                                            delete-->
+                                    <!--                                        </button>-->
+                                    <!--                                    </form>-->
+                                </div>
+                            </div>
+                        </div>
+                        <p class="collapse" th:id="'collapsePost_'+${task.id}" aria-expanded="false"
+                           th:text="${task.text}"></p>
+                        <a role="button" class="btn btn-primary collapsed collapseButton" data-toggle="collapse"
+                           th:href="'#collapsePost_'+${task.id}"
+                           aria-expanded="false" th:aria-controls="'collapsePost_'+${task.id}"></a>
+                    </div>
+                    <!--Comment Section-->
+                    <div class="card-footer" th:id="'comments_'+${task.id}">
+                        <div class="collapse" th:id="'commentSection_'+${task.id}" aria-expanded="false">
+
+                            <!--                            SHOW WHO SIGNED UP FOR TASK-->
+
+
+                            <!--                            <ul class="media-list">-->
+                            <!--                                -->
+                            <!--                                -->
+                            <!--                                -->
+                            <!--                                &lt;!&ndash;Show who signed in for Tasks &ndash;&gt;-->
+                            <!--                                -->
+                            <!--                                -->
+                            <!--                                <li class="media" th:each="c: ${task.getCommentList()}">-->
+                            <!--                                    <a class="pull-left commentImage">-->
+                            <!--                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt=""-->
+                            <!--                                             class="rounded-circle">-->
+                            <!--                                    </a>-->
+                            <!--                                    <div class="media-body">-->
+                            <!--                                <span class="text-muted pull-right">-->
+                            <!--                                    <small class="text-muted"><a th:text="${c.getPostedAtFormatted()}"></a></small>-->
+                            <!--                                    <div class="text-muted pull-right" th:if="${sessionUser!= null}">-->
+                            <!--                                        <form th:if="${sessionUser.id == c.getUser().id or sessionUser.admin == true}"-->
+                            <!--                                              th:action="@{/commentDelete/}" method="POST">-->
+                            <!--                                            <input type="hidden" name="commentId" th:value="${c.id}">-->
+                            <!--                                            <button type="submit" id="deleteCommentButton"-->
+                            <!--                                                    class="btn btn-info float-right">delete</button>-->
+                            <!--                                        </form>-->
+                            <!--                                    </div>-->
+                            <!--                                </span>-->
+                            <!--                                        <strong class="text-success"><a th:text="${c.user.username}"></a></strong>-->
+                            <!--                                        <p>-->
+                            <!--                                            <a th:text="${c.text}"></a>-->
+                            <!--                                        </p>-->
+                            <!--                                    </div>-->
+                            <!--                                </li>-->
+                            <!--                            </ul>-->
+                            <!--  Post Comment Panel-->
+                            <!--                            <form th:if="${sessionUser != null}"-->
+                            <!--                                  th:action="@{/post/comment/{postId}(postId=${post.id})}"-->
+                            <!--                                  th:object="${comment}" method="post">-->
+                            <!--                                <textarea class="form-control" placeholder="write a comment..." rows="3"-->
+                            <!--                                          th:field="*{text}"></textarea>-->
+                            <!--                                <p th:if="${#fields.hasErrors('text')}" th:errors="*{text}"></p>-->
+                            <!--                                <br>-->
+                            <!--                                <button type="submit" class="btn btn-info float-right">Post</button>-->
+                            <!--                            </form>-->
+                            <!--                            <p th:if="${sessionUser==null}">sign in to write a comment!</p>-->
+                            <!--                            <div class="clearfix"></div>-->
+                            <!--                            <hr>-->
+                        </div>
+
+                        <a role="button" class="btn btn-primary collapsed collapseButton" data-toggle="collapse"
+                           th:href="'#commentSection_'+${task.id}"
+                           aria-expanded="false" th:aria-controls="'commentSection_'+${task.id}"></a>
+                    </div>
+                    <!-- Post Footer-->
+                    <div class="card-footer text-muted">
+                        Posted on <a th:text="${task.getPostedAtFormatted()}"></a> by
+                        <strong class="text-success"><a th:text="${task.user.username}"></a></strong>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+
+<footer th:replace="layout :: footerfiles"></footer>
+</body>
+</html>
