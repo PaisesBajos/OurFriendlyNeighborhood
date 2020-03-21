@@ -1,9 +1,9 @@
-package de.awacademy.ourblog.post;
+package de.awacademy.ourblog.task;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class PostDTO {
+public class TaskDTO {
 
     @Size(min = 1, max = 9999, message = "The length must be between 1 and 9999 signs")
     @NotBlank (message = "The field cannot be empty")
@@ -12,38 +12,27 @@ public class PostDTO {
     @NotBlank (message = "The field cannot be empty")
     private String title;
 
-    private String imageUrl;
+    private long taskId;
 
-    private long postId;
+    public TaskDTO(){}
 
-    public PostDTO(){}
-
-    public PostDTO(String title, String text) {
+    public TaskDTO(String title, String text) {
         this.title = title;
         this.text = text;
-        this.imageUrl = null;
     }
 
-    public PostDTO(String title, String text, String imageUrl) {
+    public TaskDTO(String title, String text, String imageUrl) {
         this.title = title;
         this.text = text;
-        this.imageUrl = imageUrl;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 
     public long getPostId() {
-        return postId;
+        return taskId;
     }
 
     public void setPostId(long postId) {
-        this.postId = postId;
+        this.taskId = postId;
     }
 
     public String getText() {
