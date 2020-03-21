@@ -7,3 +7,4 @@ Definition of Done
 		- maintainability, reliability, usability
 	- Alex accepts user story
 	- JavaDoc
+	- Hi
