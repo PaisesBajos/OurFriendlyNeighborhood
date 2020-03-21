@@ -21,14 +21,14 @@ import java.util.Optional;
 
 
 @Controller
-public class PostController {
+public class TaskController {
 
     private PostRepository postRepository;
     private CommentRepository commentRepository;
     private UserRepository userRepository;
 
     @Autowired
-    public PostController(PostRepository postRepository, CommentRepository commentRepository, UserRepository userRepository) {
+    public TaskController(PostRepository postRepository, CommentRepository commentRepository, UserRepository userRepository) {
         this.postRepository = postRepository;
         this.commentRepository = commentRepository;
         this.userRepository = userRepository;
@@ -37,22 +37,22 @@ public class PostController {
     }
 
     /**
-     * This method is used for displaying the post page (list of posts, and a form for
+     * This method is used for displaying the post page (list of tasks, and a form for
      * creating a new post)
      *
      * @param model contains the attributes used for communication between the Java code and the
      *              HTML template
      * @return the return value is the post.html
      */
-    @GetMapping("/post")
-    public String post(Model model) {
+    @GetMapping("/task")
+    public String task(Model model) {
 
-        List<Post> posts = postRepository.findAllByOrderByPostedAtDesc();
-        model.addAttribute("comment", new CommentDTO(""));
-        model.addAttribute("commentDTO", new CommentDTO(""));
-        model.addAttribute("post", new PostDTO("", ""));
-        model.addAttribute("posts", posts);
-        return "layoutPost";
+        List<Task> tasks = postRepository.findAllByOrderByPostedAtDesc();
+        //model.addAttribute("comment", new CommentDTO(""));
+        //model.addAttribute("commentDTO", new CommentDTO(""));
+        model.addAttribute("task", new TaskDTO("", ""));
+        model.addAttribute("tasks", tasks);
+        return "layoutTasks";
     }
 
     /**
@@ -81,6 +81,17 @@ public class PostController {
             postRepository.save(post);
         }
         return "redirect:/post";
+    }
+
+    @PostMapping("/task")
+    public String task(@ModelAttribute("task") TaskDTO taskDTO, @ModelAttribute("sessionUser") User sessionUser,
+                       Model model) {
+
+        Task task = taskRepository.getTaskById(taskDTO.id);
+        sessionUser.setTask(task);
+        userRepository.save(task);
+
+        return "redirect:/task";
     }
 
     /**
@@ -132,12 +143,12 @@ public class PostController {
      * an admin, a redirect to the post page
      */
     @GetMapping("/postEdit/")
-    public String editGet(@RequestParam long postId, @ModelAttribute("sessionUser") User sessionUser, Model model, @RequestParam(required =false) String postImage) {
+    public String editGet(@RequestParam long postId, @ModelAttribute("sessionUser") User sessionUser, Model model, @RequestParam(required = false) String postImage) {
         if (sessionUser.getAdmin()) {
             Optional<Post> optionalPost = postRepository.findById(postId);
             if (optionalPost.isPresent()) {
                 Post post = optionalPost.get();
-                if(postImage != null){
+                if (postImage != null) {
                     post.setUrlToImage(postImage);
                     postRepository.save(post);
                 }
