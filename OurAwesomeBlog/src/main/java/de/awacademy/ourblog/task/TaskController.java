@@ -2,8 +2,10 @@ package de.awacademy.ourblog.task;
 
 
 //import de.awacademy.ourblog.comment.CommentRepository;
+
 import de.awacademy.ourblog.user.User;
 import de.awacademy.ourblog.user.UserRepository;
+import de.awacademy.ourblog.utils.AddressForGPS;
 import de.awacademy.ourblog.utils.FileUploader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,11 +23,11 @@ import java.util.Optional;
 public class TaskController {
 
     private TaskRepository taskRepository;
-//    private CommentRepository commentRepository;
+    //    private CommentRepository commentRepository;
     private UserRepository userRepository;
 
     @Autowired
-    public TaskController(TaskRepository taskRepository,UserRepository userRepository) {
+    public TaskController(TaskRepository taskRepository, UserRepository userRepository) {
         this.taskRepository = taskRepository;
 
         this.userRepository = userRepository;
@@ -42,7 +44,13 @@ public class TaskController {
      * @return the return value is the post.html
      */
     @GetMapping("/task")
-    public String task(Model model) {
+    public String task(Model model, @ModelAttribute("sessionUser") User sessionUser) {
+
+        /////For Testing till address is available ///
+        if (sessionUser != null) {
+            sessionUser.setAddress(new AddressForGPS("München", "Lindwurmstraße", 115));
+        }
+
 
         List<Task> tasks = taskRepository.findAllByOrderByCreatedAtDesc();
         //model.addAttribute("comment", new CommentDTO(""));

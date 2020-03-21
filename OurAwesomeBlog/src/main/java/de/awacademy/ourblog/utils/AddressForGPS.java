@@ -5,6 +5,17 @@ public class AddressForGPS {
     private String streetName;
     private int number;
 
+    public AddressForGPS(String cityName, String streetName, int number) {
+        this.cityName = cityName;
+        this.streetName = streetName;
+        this.number = number;
+    }
+
+    public AddressForGPS(){
+
+    }
+
+
     public String getCityName() {
         return cityName;
     }

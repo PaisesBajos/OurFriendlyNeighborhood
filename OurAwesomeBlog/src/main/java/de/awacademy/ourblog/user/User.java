@@ -2,6 +2,7 @@ package de.awacademy.ourblog.user;
 
 import de.awacademy.ourblog.session.Session;
 import de.awacademy.ourblog.task.Task;
+import de.awacademy.ourblog.utils.AddressForGPS;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,6 +26,11 @@ public class User {
     private boolean isHelper;
 
     private boolean isAdmin;
+
+    ///Just Temp for testing
+    @Transient
+    AddressForGPS address=new AddressForGPS("Puchheim","Alpenstraße",13);
+
 
     @OneToMany(mappedBy = "user")
     private List<Session> sessionList;
@@ -136,5 +142,13 @@ public class User {
 
     public void setHelperTaskList(List<Task> helperTaskList) {
         this.helperTaskList = helperTaskList;
+    }
+
+    public AddressForGPS getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressForGPS address) {
+        this.address = address;
     }
 }

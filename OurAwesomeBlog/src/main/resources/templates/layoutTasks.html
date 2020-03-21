@@ -56,6 +56,9 @@
                         </p>
                         <p><strong>Postal code:  </strong><a th:text="${task.getPlz()}"></a>
                         </p>
+
+                        <p th:if="${sessionUser!=null}"><strong>Distance:  </strong><a th:text="${task.getDistance(sessionUser)}"> km</a>
+                        </p>
                         <p class="collapse" th:id="'collapsePost_'+${task.id}" aria-expanded="false"
                            th:text="${task.text}"></p>
                         <a role="button" class="btn btn-primary collapsed collapseButton" data-toggle="collapse"
