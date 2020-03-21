@@ -47,7 +47,7 @@
 <!--                                    modelAttribute="taskDTO" th:action="@{/taskEdit}" method="post">-->
 <!--                                    <input type="hidden" name="postId" th:value="${post.id}">-->
 
-                                <form th:if="${sessionUser!=null and !task.isAccepted()}" th:action="@{/acceptTask}"
+                                <form th:if="${sessionUser!=null and sessionUser.getHelper() and !task.isAccepted()}" th:action="@{/acceptTask}"
                                       th:object="${taskDTO}"  modelAttribute="taskDTO"  method="post">
                                     <div class="form-group">
                                             <input type="hidden" name="taskId" th:value="${task.id}">

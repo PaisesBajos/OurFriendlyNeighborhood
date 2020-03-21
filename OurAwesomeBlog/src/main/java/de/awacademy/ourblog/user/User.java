@@ -77,9 +77,7 @@ public class User {
         this.sessionList = sessionList;
     }
 
-
-
-    public boolean isHelper() {
+    public boolean getHelper() {
         return isHelper;
     }
 

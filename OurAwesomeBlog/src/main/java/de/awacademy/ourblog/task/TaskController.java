@@ -118,7 +118,7 @@ public class TaskController {
      */
     @PostMapping("/acceptTask")
     public String acceptTask(@ModelAttribute("taskDTO") TaskDTO taskDTO, @ModelAttribute("sessionUser") User sessionUser) {
-        if (sessionUser!= null && sessionUser.isHelper()) {
+        if (sessionUser!= null && sessionUser.getHelper()) {
             Optional<Task> optionalTask = taskRepository.findById(taskDTO.getTaskId());
             if (optionalTask.isPresent()) {
                 Task task = optionalTask.get();
@@ -194,7 +194,6 @@ public class TaskController {
         userMaja.setFirstName("Maja");
         userMaja.setLastName("Francetic");
         userMaja.setLocation("80637, München");
-        userMaja.setHelper(true);
 
         User userMichael = new User();
         userMichael.setUsername("Michael");
@@ -202,8 +201,6 @@ public class TaskController {
         userMichael.setFirstName("Michael");
         userMichael.setFirstName("Holland");
         userMichael.setLocation("80333, München");
-        userMaja.setHelper(true);
-
 
         userRepository.save(userMaja);
         userRepository.save(userMichael);
