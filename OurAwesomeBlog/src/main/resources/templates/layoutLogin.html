@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: headerfiles">
+    <title id="pageTitle">Login</title>
+</head>
+<body>
+<!-- Navigation -->
+<nav th:replace="layout :: navbar"></nav>
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <!-- User List Column -->
+        <div class="col-sm-8">
+
+            <h1 class="my-4">Login</h1>
+
+            <div class="card mb-4">
+                <div class="card-body" id="loginSection">
+                    <div class="form-group">
+                        <form th:action="@{/login}" th:object="${login}" method="post">
+                            <label for="formGroupExampleInput">Username</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Username"
+                                   th:field="*{username}">
+                            <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+                            <label for="formGroupExampleInput">Password</label>
+                            <input type="password" class="form-control" id="formGroupExampleInput"
+                                   placeholder="Password"
+                                   th:field="*{password}">
+                            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                            <br>
+                            <input class="btn btn-primary float-right" type="submit" value="Login">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="layout :: footerfiles">
+</footer>
+</body>
+</html>

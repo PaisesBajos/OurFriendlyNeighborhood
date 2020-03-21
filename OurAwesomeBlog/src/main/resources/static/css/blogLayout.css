@@ -1,0 +1,106 @@
+body {
+    padding-top: 56px;
+    background: url('/images/beach.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-bottom: 25px;
+}
+
+.formsubmit {
+    margin-top: 2.5em;
+}
+
+
+[id^=postSection] a.collapsed:after {
+    content: '+ Show More';
+}
+
+[id^=postSection] a:not(.collapsed).collapseButton:after {
+    content: '- Show Less';
+}
+
+[id^=postSection] [id^=collapsePost].collapse:not(.show) {
+    display: block;
+    height: 4.5em;
+    overflow: hidden;
+}
+
+[id^=postSection] [id^=collapsePost].collapsing {
+    height: 4.5em;
+}
+
+/*Comments*/
+[id^=comments] a.collapsed:after {
+    content: '+ Show Comments';
+}
+
+[id^=comments] a:not(.collapsed).collapseButton:after {
+    content: '- Hide Comments';
+}
+
+.media-list .media img {
+    width: 64px;
+    height: 64px;
+    border: 2px solid #e5e7e8;
+}
+
+.media-list .media {
+    border-bottom: 1px dashed #efefef;
+    margin-bottom: 25px;
+}
+
+#heading {
+    margin-left: -2em;
+}
+
+#deletePostButton {
+    margin-right: 1em;
+}
+
+.commentImage {
+    margin-right: 0.5em;
+}
+
+#deleteCommentButton {
+    margin-left: 0.5em;
+}
+
+.btn {
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: #b9c2c9;
+    border-color: transparent;
+    border-radius: 5px;
+
+}
+
+.btn-primary {
+    background-image: linear-gradient(to right, #343a40 0%, #5e6e7d 51%, #6c757d 100%);
+}
+
+.btn:hover {
+    background-position: right center;
+    border-color: transparent;
+}
+
+.btn-info {
+    color: white;
+    background-image: linear-gradient(to right, #4b90a6 0%, #6dbbbf 51%, #46adb3 100%);
+}
+
+.btn:focus, .btn:active {
+    outline: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.img-thumbnail {
+    width: 12em;
+    height: 12em;
+}
+
+.col-sm-8 {
+    margin: auto;
+}

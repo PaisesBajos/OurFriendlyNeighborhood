@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+    <title th:include=":: #pageTitle">Awesome Blog</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="../static/css/blogLayout.css" th:href="@{/css/blogLayout.css}" rel="stylesheet"/>
+</head>
+<body>
+<!--Navigation-->
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/post}">Awesome Blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/post}">Posts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/register}" th:if="${sessionUser == null}">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/login}" th:if="${sessionUser == null}">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:if="${sessionUser != null and sessionUser.getAdmin() == true}"
+                       th:href="@{/admin}">Admin</a>
+                </li>
+                <li class="nav-item" th:if="${sessionUser != null}">
+                    <a class="nav-link" href="#" onclick="$('#LogOutId').click();">
+                        Log Out
+                    </a>
+                    <div style="display: none;">
+                        <form method="post" th:action="@{/logout}">
+                            <button type="submit" id="LogOutId"></button>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Footer -->
+<footer th:fragment="footerfiles" class="py-2 bg-dark fixed-bottom">
+    <div class="container">
+        <p class="m-0 text-center text-white">&copy; M&M</p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+</footer>
+</body>
+</html>
