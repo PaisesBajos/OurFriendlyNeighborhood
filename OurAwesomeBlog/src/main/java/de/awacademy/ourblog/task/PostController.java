@@ -1,4 +1,4 @@
-package de.awacademy.ourblog.post;
+package de.awacademy.ourblog.task;
 
 import de.awacademy.ourblog.comment.Comment;
 import de.awacademy.ourblog.comment.CommentDTO;
@@ -194,14 +194,27 @@ public class PostController {
         userMichael.setLocation("80333, München");
 
 
-        Post postParis = new Post();
-        postParis.setTitle("Paris");
-        postParis.setText("Paris, France's capital, is a major European city and a global center for art, fashion, gastronomy and culture. Its 19th-century cityscape is crisscrossed by wide boulevards and the River Seine. Beyond such landmarks as the Eiffel Tower and the 12th-century, Gothic Notre-Dame cathedral, the city is known for its cafe culture and designer boutiques along the Rue du Faubourg Saint-Honoré." +
-                "The centre of Paris contains the most visited monuments in the city, including the Notre Dame Cathedral (now closed for restoration) and the Louvre as well as the Sainte-Chapelle; Les Invalides, where the tomb of Napoleon is located, and the Eiffel Tower are located on the Left Bank south-west of the centre. The Panthéon and the Catacombs of Paris are also located on the Left Bank of the Seine. " +
-                "The banks of the Seine from the Pont de Sully to the Pont d'Iéna have been listed as a UNESCO World Heritage Site since 1991. Other landmarks are laid out east to west along the historical axis of Paris, which runs from the Louvre through the Tuileries Garden, the Luxor Column in the Place de la Concorde, and the Arc de Triomphe, to the Grande Arche of La Défense. ");
-        postParis.setUser(userMichael);
-        postParis.setUrlToImage("paris.jpg");
-        postParis.setPostedAt(Instant.now().minusSeconds(100));
+        Task taskBlumenGiessen = new Task();
+        taskBlumenGiessen.setTitle("Blumen Gießen");
+        taskBlumenGiessen.setText("Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.");
+        taskBlumenGiessen.setHelpUser(userMichael);
+        taskBlumenGiessen.setRequestUser(userMarko);
+        taskBlumenGiessen.setCreatedAt(Instant.now().minusSeconds(100));
+        taskBlumenGiessen.setDueDate(Instant.now().plusSeconds(90000));
+        taskBlumenGiessen.setAccepted(false);
+        taskBlumenGiessen.setPlz("40590");
+
+
+        Task taskEinkaufen = new Task();
+        taskEinkaufen.setTitle("Kleiner Einkauf");
+        taskEinkaufen.setText("Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.");
+        taskEinkaufen.setHelpUser(userMaja);
+        taskEinkaufen.setRequestUser(userMarko);
+        taskEinkaufen.setCreatedAt(Instant.now().minusSeconds(100));
+        taskEinkaufen.setDueDate(Instant.now().plusSeconds(10000));
+        taskEinkaufen.setAccepted(false);
+        taskEinkaufen.setPlz("76133");
+
 
         Post postPrague = new Post();
         postPrague.setTitle("Prague");
