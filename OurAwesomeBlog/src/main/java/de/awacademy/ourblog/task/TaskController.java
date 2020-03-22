@@ -302,16 +302,14 @@ public class TaskController {
         Task taskBlumenGiessen = new Task();
         taskBlumenGiessen.setTitle("Blumen Gießen");
         taskBlumenGiessen.setText("Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.");
-        taskBlumenGiessen.setHelpUser(userMichael);
         taskBlumenGiessen.setRequestUser(userMaja);
         taskBlumenGiessen.setCreatedAt(Instant.now().minusSeconds(100));
         taskBlumenGiessen.setDueDate(Instant.now().plusSeconds(90000));
-        taskBlumenGiessen.setAccepted(false);
+        taskBlumenGiessen.setAccepted(true);
 
         Task taskblumengiessenZwei = new Task();
         taskblumengiessenZwei.setTitle("Blumen Gießen");
         taskblumengiessenZwei.setText("Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.");
-        taskblumengiessenZwei.setHelpUser(userMaja);
         taskblumengiessenZwei.setRequestUser(userMichael);
         taskblumengiessenZwei.setCreatedAt(Instant.now().minusSeconds(100));
         taskblumengiessenZwei.setDueDate(Instant.now().plusSeconds(90000));

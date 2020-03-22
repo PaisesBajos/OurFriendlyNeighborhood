@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="layout :: headerfiles">
-    <title id="pageTitle">Administrator Page</title>
+    <title id="pageTitle">Profile</title>
 </head>
 <body>
 <!-- Navigation -->
@@ -88,7 +88,7 @@
                                     <div class="col-sm">
                                         <h3 class="card-title"><a th:text="${task.title}"></a></h3>
                                     </div>
-                                        <form th:if="${sessionUser!=null and sessionUser.getHelper() and task.isAccepted()}"
+                                        <form th:if="${task.isAccepted()}"
                                               th:action="@{/cancelTask}"
                                               th:object="${taskDTO}" modelAttribute="taskDTO" method="post">
                                             <div class="form-group">
@@ -102,43 +102,43 @@
                                                                                 th:text="${task.title}"><br>-->
                                 </div>
                                 </div>
+
                                         <p><strong>Due date: </strong><a th:text="${task.getDueDateFormatted()}"></a>
                                         </p>
 
-                                        <p><strong>Person in need : </strong>
-                                            <a th:text="${task.getRequestUser().getFirstName()}"></a>
-                                            <a th:text="${task.getRequestUser().getLastName()}"></a>
-                                        </p>
+                                    <a role="button" class="btn btn-primary collapsed collapseButton" data-toggle="collapse"
+                                       th:href="'#collapsePost_'+${task.id}"
+                                       aria-expanded="false" th:aria-controls="'collapsePost_'+${task.id}"></a>
+                                    <div class="collapse" th:id="'collapsePost_'+${task.id}" aria-expanded="false">
+                                        <div class="card-body">
+                                            <br>
+                                            <br>
 
-                                        <p><strong>Address of the person in need: </strong>
-                                            <a th:text="${task.getRequestUser().getAdressUser().getStreet()}">  </a>
-                                            <a th:text="${task.getRequestUser().getAdressUser().getHouseNumber()}"></a>,
-                                            <a th:text="${task.getRequestUser().getAdressUser().getPlz()}"></a>
-                                            <a th:text="${task.getRequestUser().getAdressUser().getCity()}"></a>,
-                                            <a th:text="${task.getRequestUser().getAdressUser().getCountry()}"></a>
-                                        </p>
+                                            <p><strong>Person in need : </strong>
+                                                <a th:text="${task.getRequestUser().getFirstName()}"></a>
+                                                <a th:text="${task.getRequestUser().getLastName()}"></a>
+                                            </p>
 
-                                        <p th:if="${sessionUser!=null}"><strong>Distance: </strong><a
-                                                th:text="${task.getDistance(sessionUser)}"></a> km
-                                        </p>
-                                        <p class="collapse" th:id="'collapsePost_'+${task.id}" aria-expanded="false"
-                                           th:text="${task.text}"></p>
-                                        <a role="button" class="btn btn-primary collapsed collapseButton" data-toggle="collapse"
-                                           th:href="'#collapsePost_'+${task.id}"
-                                           aria-expanded="false" th:aria-controls="'collapsePost_'+${task.id}"></a>
-                                        <!--                                <div class="col">-->
-                                        <!--                                    <span th:if="${user.admin}" class="list-group-item float-right"-->
-                                        <!--                                          style="border: none">Admin</span>-->
-                                        <!--                                    <form th:if="${user.admin != true}" method="post" th:action="@{/admin}">-->
-                                        <!--                                        <input type="hidden" name="userId"-->
-                                        <!--                                               th:value="${user.id}">-->
-                                        <!--                                        <input class="btn btn-primary float-right" type="submit" value="Make Admin">-->
-                                        <!--                                    </form>-->
-                                        <!--                            </div>-->
-                                        <div class="card-footer text-muted">
-                                            Posted on <a th:text="${task.getPostedAtFormatted()}"></a> by
-                                            <strong class="text-success"><a th:text="${task.requestUser.username}"></a></strong>
+                                            <p><strong>Address of the person in need: </strong>
+                                                <a th:text="${task.getRequestUser().getAdressUser().getStreet()}">  </a>
+                                                <a th:text="${task.getRequestUser().getAdressUser().getHouseNumber()}"></a>,
+                                                <a th:text="${task.getRequestUser().getAdressUser().getPlz()}"></a>
+                                                <a th:text="${task.getRequestUser().getAdressUser().getCity()}"></a>,
+                                                <a th:text="${task.getRequestUser().getAdressUser().getCountry()}"></a>
+                                            </p>
+
+                                            <p th:if="${sessionUser!=null}"><strong>Distance: </strong><a
+                                                    th:text="${task.getDistance(sessionUser)}"></a> km
+                                            </p>
+
+                                            <p><strong>Posted on: </strong><a th:text="${task.getPostedAtFormatted()}"></a></p>
+
+                                            <p th:text="${task.text}"></p>
                                         </div>
+
+                                        <!--                                        <p -->
+                                        <!--                                           th:text="${task.text}"></p>-->
+                                </div>
                                 </div>
                             </div>
                         </ul>
