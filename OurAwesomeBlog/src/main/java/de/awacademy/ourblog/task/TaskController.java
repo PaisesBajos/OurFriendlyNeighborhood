@@ -236,6 +236,20 @@ public class TaskController {
         return "redirect:/task";
     }
 
+    @PostMapping("/cancelTask")
+    public String cancelTask(@ModelAttribute("taskDTO") TaskDTO taskDTO, @ModelAttribute("sessionUser") User sessionUser) {
+        if (sessionUser!= null && sessionUser.getHelper()) {
+            Optional<Task> optionalTask = taskRepository.findById(taskDTO.getTaskId());
+            if (optionalTask.isPresent()) {
+                Task task = optionalTask.get();
+                task.setHelpUser(null);
+                task.setAccepted(false);
+                taskRepository.save(task);
+                return "redirect:/profile";
+            }
+        }
+        return "redirect:/task";
+    }
 
     private void generateDummyData() {
         User userMaja = new User();

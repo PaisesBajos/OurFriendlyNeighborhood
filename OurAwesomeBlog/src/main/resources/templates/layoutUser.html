@@ -82,12 +82,26 @@
                         <ul class="list-group" style="list-style-type:none">
                             <div class="card mb-4" th:each="task: ${user.helperTaskList}">
                                 <div class="card-body" th:id="'postSection_'+${task.id}">
-                                <div class="form-group row">
+                                    <div class="container">
+                                        <div id="heading" class="row">
+                                        <!--                                    <div class="form-group row">-->
                                     <div class="col-sm">
                                         <h3 class="card-title"><a th:text="${task.title}"></a></h3>
+                                    </div>
+                                        <form th:if="${sessionUser!=null and sessionUser.getHelper() and task.isAccepted()}"
+                                              th:action="@{/cancelTask}"
+                                              th:object="${taskDTO}" modelAttribute="taskDTO" method="post">
+                                            <div class="form-group">
+                                                <input type="hidden" name="taskId" th:value="${task.id}">
+                                                <input class="btn btn-primary" type="submit" value="Cancel Task">
+                                            </div>
+                                        </form>
 
                                         <!--                                        <span class="list-group-item"-->
-                                        <!--                                             th:text="${task.title}"><br>-->
+                                        <!--
+                                                                                th:text="${task.title}"><br>-->
+                                </div>
+                                </div>
                                         <p><strong>Due date: </strong><a th:text="${task.getDueDateFormatted()}"></a>
                                         </p>
 
@@ -127,15 +141,10 @@
                                         </div>
                                 </div>
                             </div>
-                                </div>
-                            </div>
                         </ul>
                     </div>
                 </div>
-            </div>
-        </div>
         <!-- /.row -->
-    </div>
     <footer th:replace="layout :: footerfiles">
     </footer>
 </body>

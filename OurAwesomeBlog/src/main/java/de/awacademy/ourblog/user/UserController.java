@@ -3,6 +3,7 @@ package de.awacademy.ourblog.user;
 
 import de.awacademy.ourblog.session.SessionRepository;
 import de.awacademy.ourblog.task.Task;
+import de.awacademy.ourblog.task.TaskDTO;
 import de.awacademy.ourblog.task.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -91,6 +92,7 @@ public class UserController {
 //            model.addAttribute("post", post);
             User user = userRepository.findById(sessionUser.getId()).get();
             model.addAttribute("user", user);
+            model.addAttribute("task", new TaskDTO("", ""));
             return "layoutUser";
         }
         return "redirect:/";
