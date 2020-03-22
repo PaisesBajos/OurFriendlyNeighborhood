@@ -268,7 +268,7 @@ public class TaskController {
         userMichael.setPassword("Dummy");
         userMichael.setFirstName("Michael");
         userMichael.setFirstName("Holland");
-        userMaja.setHelper(true);
+        userMichael.setHelper(true);
 
         Adress adress1 = new Adress("Germany", "München", "404061", "Seitelstraße", "5", "a");
         adressRepository.save(adress1);
@@ -282,7 +282,7 @@ public class TaskController {
         Adress adress2 = new Adress("Germany", "München", "404062", "Seitelstraße", "5", "a");
         adressRepository.save(adress2);
         userMatze.setAdressUser(adress2);
-        userMaja.setHelper(true);
+        userMatze.setHelper(true);
 
         User userGerline = new User();
         userGerline.setUsername("Gerline");
