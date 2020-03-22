@@ -300,24 +300,24 @@ public class TaskController {
         taskBlumenGiessen.setTitle("Blumen Gießen");
         taskBlumenGiessen.setText("Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.");
         taskBlumenGiessen.setRequestUser(userMaja);
-        taskBlumenGiessen.setCreatedAt(Instant.now().minusSeconds(100));
+        taskBlumenGiessen.setCreatedAt(Instant.now().minusSeconds(500));
         taskBlumenGiessen.setDueDate(Instant.now().plusSeconds(90000));
-        taskBlumenGiessen.setAccepted(true);
+        taskBlumenGiessen.setAccepted(false);
 
         Task taskblumengiessenZwei = new Task();
         taskblumengiessenZwei.setTitle("Blumen Gießen");
         taskblumengiessenZwei.setText("Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.");
         taskblumengiessenZwei.setRequestUser(userMichael);
-        taskblumengiessenZwei.setCreatedAt(Instant.now().minusSeconds(100));
-        taskblumengiessenZwei.setDueDate(Instant.now().plusSeconds(90000));
+        taskblumengiessenZwei.setCreatedAt(Instant.now().minusSeconds(5000));
+        taskblumengiessenZwei.setDueDate(Instant.now().plusSeconds(600000));
         taskblumengiessenZwei.setAccepted(false);
 
         Task taskEinkaufen = new Task();
         taskEinkaufen.setTitle("Kleiner Einkauf");
         taskEinkaufen.setText("Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.");
         taskEinkaufen.setRequestUser(userMatze);
-        taskEinkaufen.setCreatedAt(Instant.now().minusSeconds(100));
-        taskEinkaufen.setDueDate(Instant.now().plusSeconds(10000));
+        taskEinkaufen.setCreatedAt(Instant.now().minusSeconds(1000));
+        taskEinkaufen.setDueDate(Instant.now().plusSeconds(400000));
         taskEinkaufen.setAccepted(false);
 
         taskRepository.save(taskEinkaufen);
