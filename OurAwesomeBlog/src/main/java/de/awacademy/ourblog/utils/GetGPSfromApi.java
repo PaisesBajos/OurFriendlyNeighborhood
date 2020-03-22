@@ -20,12 +20,12 @@ public class GetGPSfromApi {
             put("lng", root.findPath("lng").asDouble());
         }};
     }
-    public static double distanceBetweenAddresses(AddressForGPS addressForGPSOne, AddressForGPS addressForGPSTwo){
+    public static double distanceBetweenAddresses(Adress addressForGPSOne, Adress addressForGPSTwo){
         HashMap<String, Double> posOne = new HashMap<>();
         HashMap<String, Double> posTwo = new HashMap<>();
         try{
-            posOne = getLocationFromCityStreetNumber(addressForGPSOne.getCityName(), addressForGPSOne.getStreetName(), addressForGPSOne.getNumber());
-            posTwo = getLocationFromCityStreetNumber(addressForGPSTwo.getCityName(), addressForGPSTwo.getStreetName(), addressForGPSTwo.getNumber());
+            posOne = getLocationFromCityStreetNumber(addressForGPSOne.getCity(), addressForGPSOne.getStreet(), Integer.parseInt(addressForGPSOne.getHouseNumber()));
+            posTwo = getLocationFromCityStreetNumber(addressForGPSTwo.getCity(), addressForGPSTwo.getStreet(), Integer.parseInt(addressForGPSTwo.getHouseNumber()));
         } catch (Exception e) {
             e.printStackTrace();
         }

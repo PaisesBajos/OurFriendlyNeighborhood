@@ -53,7 +53,7 @@ public class Task {
     }
 
     public double getDistance(User sessionuser){
-        return Math.round(GetGPSfromApi.distanceBetweenAddresses(sessionuser.getAddress(),requestUser.getAddress())*10)/10.0;
+        return Math.round(GetGPSfromApi.distanceBetweenAddresses(sessionuser.getAdressUser(),requestUser.getAdressUser())*10)/10.0;
     }
 
 

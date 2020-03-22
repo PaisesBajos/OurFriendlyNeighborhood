@@ -29,10 +29,6 @@ public class User {
     @OneToOne
     private Adress adressUser;
 
-    ///Just Temp for testing
-    @Transient
-    AddressForGPS address=new AddressForGPS("Puchheim","Alpenstraße",13);
-
 
     @OneToMany(mappedBy = "user")
     private List<Session> sessionList;
@@ -135,14 +131,6 @@ public class User {
 
     public void setHelperTaskList(List<Task> helperTaskList) {
         this.helperTaskList = helperTaskList;
-    }
-
-    public AddressForGPS getAddress() {
-        return address;
-    }
-
-    public void setAddress(AddressForGPS address) {
-        this.address = address;
     }
 
     public Adress getAdressUser() {

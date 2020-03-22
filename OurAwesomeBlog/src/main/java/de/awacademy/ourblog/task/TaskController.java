@@ -49,9 +49,6 @@ public class TaskController {
     public String task(Model model, @ModelAttribute("sessionUser") User sessionUser, @RequestParam(required = false) Integer sortingOption) {
 
         /////For Testing till address is available ///
-        if (sessionUser != null) {
-            sessionUser.setAddress(new AddressForGPS("München", "Lindwurmstraße", 115));
-        }
 
         List<Task> tasks = taskRepository.findAllByOrderByCreatedAtDesc();
 
@@ -206,42 +203,20 @@ public class TaskController {
 //                "You successfully uploaded " + file.getOriginalFilename() + "!");
 //    }
 
-    /**
-     * This method handels the helper user accepting a selected task
-     *
-     * @param taskDTO            is a task DTO object, that collects the input from the task form
-     * @param sessionUser        is the logged-in user
-     * @return the return value is a redirect to the task page
-     */
-    @PostMapping("/acceptTask")
-    public String acceptTask(@ModelAttribute("taskDTO") TaskDTO taskDTO, @ModelAttribute("sessionUser") User sessionUser) {
-        if (sessionUser!= null && sessionUser.getHelper()) {
-            Optional<Task> optionalTask = taskRepository.findById(taskDTO.getTaskId());
-            if (optionalTask.isPresent()) {
-                Task task = optionalTask.get();
-                task.setHelpUser(sessionUser);
-                task.setAccepted(true);
-                taskRepository.save(task);
-            }
-        }
-        return "redirect:/task";
-    }
-
-
     private void generateDummyData() {
         User userMaja = new User();
         userMaja.setUsername("Maja");
         userMaja.setPassword("Dummy");
         userMaja.setFirstName("Maja");
         userMaja.setLastName("Francetic");
-        userMaja.setHelper(true);
+
 
         User userMichael = new User();
         userMichael.setUsername("Michael");
         userMichael.setPassword("Dummy");
         userMichael.setFirstName("Michael");
         userMichael.setFirstName("Holland");
-        userMichael.setHelper(true);
+
 
 
         userRepository.save(userMaja);
@@ -256,9 +231,7 @@ public class TaskController {
         taskBlumenGiessen.setCreatedAt(Instant.now().minusSeconds(100));
         taskBlumenGiessen.setDueDate(Instant.now().plusSeconds(90000));
         taskBlumenGiessen.setAccepted(false);
-
-        Adress adress1 = new Adress("Germany", "München", "40460", "Seitelstraße", "5", "a");
-        taskBlumenGiessen.getRequestUser().setAdressUser(adress1);
+        taskBlumenGiessen.getRequestUser().setAdressUser(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
 
         Task taskblumengiessenZwei = new Task();
         taskblumengiessenZwei.setTitle("Blumen Gießen");
@@ -268,9 +241,7 @@ public class TaskController {
         taskblumengiessenZwei.setCreatedAt(Instant.now().minusSeconds(100));
         taskblumengiessenZwei.setDueDate(Instant.now().plusSeconds(90000));
         taskblumengiessenZwei.setAccepted(false);
-
-        Adress adress2 = new Adress("Germany", "München", "40460", "Seitelstraße", "5", "a");
-        taskblumengiessenZwei.getRequestUser().setAdressUser(adress2);
+        taskblumengiessenZwei.getRequestUser().setAdressUser(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
 
 
         Task taskEinkaufen = new Task();
@@ -281,12 +252,10 @@ public class TaskController {
         taskEinkaufen.setCreatedAt(Instant.now().minusSeconds(100));
         taskEinkaufen.setDueDate(Instant.now().plusSeconds(10000));
         taskEinkaufen.setAccepted(false);
-
-        Adress adress3 = new Adress("Germany", "München", "40460", "Seitelstraße", "5", "a");
-        taskblumengiessenZwei.getRequestUser().setAdressUser(adress3);
+        taskEinkaufen.getRequestUser().setAdressUser(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
 
         taskRepository.save(taskEinkaufen);
-                taskRepository.save(taskblumengiessenZwei);
+        taskRepository.save(taskblumengiessenZwei);
         taskRepository.save(taskBlumenGiessen);
 
 //

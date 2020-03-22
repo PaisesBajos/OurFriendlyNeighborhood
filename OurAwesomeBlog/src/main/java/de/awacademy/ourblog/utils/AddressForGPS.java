@@ -15,7 +15,6 @@ public class AddressForGPS {
 
     }
 
-
     public String getCityName() {
         return cityName;
     }
