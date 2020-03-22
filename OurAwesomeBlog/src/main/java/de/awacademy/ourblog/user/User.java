@@ -3,7 +3,6 @@ package de.awacademy.ourblog.user;
 import de.awacademy.ourblog.utils.Adress;
 import de.awacademy.ourblog.session.Session;
 import de.awacademy.ourblog.task.Task;
-import de.awacademy.ourblog.utils.AddressForGPS;
 
 import javax.persistence.*;
 import java.util.List;
@@ -26,9 +25,8 @@ public class User {
 
     private boolean isAdmin;
 
-    @OneToOne
+    @ManyToOne
     private Adress adressUser;
-
 
     @OneToMany(mappedBy = "user")
     private List<Session> sessionList;

@@ -2,18 +2,11 @@ package de.awacademy.ourblog.task;
 
 
 import de.awacademy.ourblog.user.User;
-import de.awacademy.ourblog.utils.AddressForGPS;
-import de.awacademy.ourblog.utils.Adress;
 import de.awacademy.ourblog.utils.DateTimeConverter;
 import de.awacademy.ourblog.utils.GetGPSfromApi;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.Date;
-import java.util.List;
-
-import static org.hibernate.annotations.CascadeType.DELETE;
 
 @Entity
 public class Task {

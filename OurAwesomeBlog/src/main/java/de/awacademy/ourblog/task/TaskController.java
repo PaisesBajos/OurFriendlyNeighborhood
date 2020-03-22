@@ -5,20 +5,16 @@ package de.awacademy.ourblog.task;
 
 import de.awacademy.ourblog.user.User;
 import de.awacademy.ourblog.user.UserRepository;
-import de.awacademy.ourblog.utils.AddressForGPS;
 import de.awacademy.ourblog.utils.Adress;
+import de.awacademy.ourblog.utils.AdressRepository;
 import de.awacademy.ourblog.utils.CustomQueries;
-import de.awacademy.ourblog.utils.FileUploader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.Optional;
 
 
 @Controller
@@ -27,12 +23,15 @@ public class TaskController {
     private TaskRepository taskRepository;
     //    private CommentRepository commentRepository;
     private UserRepository userRepository;
+    private AdressRepository adressRepository;
 
     @Autowired
-    public TaskController(TaskRepository taskRepository, UserRepository userRepository) {
+    public TaskController(TaskRepository taskRepository, UserRepository userRepository,
+                          AdressRepository adressRepository) {
         this.taskRepository = taskRepository;
 
         this.userRepository = userRepository;
+        this.adressRepository = adressRepository;
         //todo: delete before final release
         generateDummyData();
     }
@@ -220,21 +219,25 @@ public class TaskController {
         userMaja.setPassword("Dummy");
         userMaja.setFirstName("Maja");
         userMaja.setLastName("Francetic");
-        userMaja.setAdressUser(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
+
+        Adress adress = new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a");
+        adressRepository.save(adress);
+        userMaja.setAdressUser(adress);
 
         User userMichael = new User();
         userMichael.setUsername("Michael");
         userMichael.setPassword("Dummy");
         userMichael.setFirstName("Michael");
         userMichael.setFirstName("Holland");
-        userMichael.setAdressUser(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
+
+        userMichael.setAdressUser(adress);
 
         User userMatze = new User();
         userMatze.setUsername("Matthias");
         userMatze.setPassword("Dummy");
         userMatze.setFirstName("Matthias");
         userMatze.setFirstName("Hetz");
-        userMatze.setAdressUser(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
+        userMatze.setAdressUser(adress);
 
         User userGerline = new User();
         userGerline.setUsername("Gerline");
@@ -242,7 +245,7 @@ public class TaskController {
         userGerline.setFirstName("Gerlinde");
         userGerline.setFirstName("Musterfrau");
         userGerline.setHelper(false);
-        userMatze.setAdressUser(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
+        userGerline.setAdressUser(adress);
 
         userRepository.save(userMaja);
         userRepository.save(userMichael);

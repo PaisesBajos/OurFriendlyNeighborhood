@@ -2,10 +2,8 @@ package de.awacademy.ourblog.utils;
 
 import de.awacademy.ourblog.user.User;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Adress {
@@ -21,8 +19,8 @@ public class Adress {
     private String houseNumber;
     private String addition;
 
-    @OneToOne
-    private User user;
+    @OneToMany(mappedBy = "adressUser")
+    private List<User> users;
 
     public Adress(){};
 
@@ -83,5 +81,13 @@ public class Adress {
 
     public void setAddition(String addition) {
         this.addition = addition;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }
