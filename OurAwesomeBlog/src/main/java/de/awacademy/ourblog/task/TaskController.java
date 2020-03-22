@@ -56,19 +56,16 @@ public class TaskController {
             if(sortingOption==1 && sessionUser!=null){
                 tasks = CustomQueries.sortByDistance(tasks,sessionUser);
             }
-            if(sortingOption==2){
-                tasks = taskRepository.findAllByHelpUser_IdIsNull();
-            }
 
-            if(sortingOption==3){
+            if(sortingOption==2){
                 tasks = taskRepository.findAllByOrderByDueDateAsc();
             }
 
-            if(sortingOption==4){
+            if(sortingOption==3){
                 tasks = taskRepository.findAllByOrderByCreatedAtDesc();
             }
 
-            if(sortingOption==5){
+            if(sortingOption==4){
                 tasks = taskRepository.findAllByOrderByRequestUser_AdressUser_Plz();
             //    tasks = taskRepository.findAllByOrderByPlzAsc();
             }

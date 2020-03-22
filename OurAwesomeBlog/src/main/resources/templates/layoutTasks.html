@@ -22,10 +22,9 @@
                 </button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" th:if="${sessionUser!=null}" href="/task?sortingOption=1">Distance</a>
-                    <a class="dropdown-item" href="/task?sortingOption=2">Not Assigned</a>
-                    <a class="dropdown-item" href="/task?sortingOption=3">Due Date</a>
-                    <a class="dropdown-item" href="/task?sortingOption=4">Creation Date</a>
-                    <a class="dropdown-item" href="/task?sortingOption=5">Postal Code</a>
+                    <a class="dropdown-item" href="/task?sortingOption=2">Due Date</a>
+                    <a class="dropdown-item" href="/task?sortingOption=3">Creation Date</a>
+                    <a class="dropdown-item" href="/task?sortingOption=4">Postal Code</a>
                 </div>
             </div>
 
@@ -34,7 +33,7 @@
             <!-- Blog Post -->
             <div th:each="task: ${tasks}">
 
-                <div class="card mb-4">
+                <div class="card mb-4" th:if="${!task.isAccepted()}">
                     <!--                         th:src="@{/images/{postId}(postId = ${post.urlToImage})}" alt="">-->
                     <div class="card-body" th:id="'postSection_'+${task.id}">
 
