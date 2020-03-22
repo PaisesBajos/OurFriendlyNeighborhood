@@ -57,7 +57,7 @@ public class TaskController {
                 tasks = CustomQueries.sortByDistance(tasks,sessionUser);
             }
             if(sortingOption==2){
-                tasks = taskRepository.findAllByHelpUserIsNull();
+                tasks = taskRepository.findAllByHelpUser_IdIsNull();
             }
 
             if(sortingOption==3){
