@@ -39,12 +39,6 @@ public class Task {
 
     private Instant dueDate;
 
-    @Transient
-    public Adress adressTask;
-
-    public String plz;
-
-
     public Task() {
     }
 
@@ -135,19 +129,4 @@ public class Task {
         return DateTimeConverter.getConvertedDateTime(dueDate);
     }
 
-    public String getPlz() {
-        return plz;
-    }
-
-    public void setPlz(String plz) {
-        this.plz = plz;
-    }
-
-    public Adress getAdressTask() {
-        return adressTask;
-    }
-
-    public void setAdressTask(Adress adressTask) {
-        this.adressTask = adressTask;
-    }
 }

@@ -22,16 +22,12 @@ public class User {
 
     private String lastName;
 
-    private String location;
-
     private boolean isHelper;
 
     private boolean isAdmin;
 
-    private String plz;
-
-    @Transient
-    Adress adressUser=new Adress();
+    @OneToOne
+    private Adress adressUser;
 
     ///Just Temp for testing
     @Transient
@@ -113,15 +109,6 @@ public class User {
         return firstName;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-
     public boolean getAdmin() {
         return isAdmin;
     }
@@ -166,11 +153,4 @@ public class User {
         this.adressUser = adressUser;
     }
 
-    public String getPlz() {
-        return plz;
-    }
-
-    public void setPlz(String plz) {
-        this.plz = plz;
-    }
 }

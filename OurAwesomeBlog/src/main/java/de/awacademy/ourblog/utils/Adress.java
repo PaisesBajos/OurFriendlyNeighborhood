@@ -1,6 +1,18 @@
 package de.awacademy.ourblog.utils;
 
+import de.awacademy.ourblog.user.User;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Adress {
+
+    @Id
+    @GeneratedValue
+    private long id;
 
     private String country;
     private String city;
@@ -20,6 +32,9 @@ public class Adress {
         this.houseNumber = houseNumber;
         this.addition = addition;
     }
+
+    @OneToOne
+    private User user;
 
     public String getCountry() {
         return country;

@@ -234,7 +234,7 @@ public class TaskController {
         taskBlumenGiessen.setCreatedAt(Instant.now().minusSeconds(100));
         taskBlumenGiessen.setDueDate(Instant.now().plusSeconds(90000));
         taskBlumenGiessen.setAccepted(false);
-        taskBlumenGiessen.setAdressTask(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
+        taskBlumenGiessen.getRequestUser().setAdressUser(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
 
         Task taskblumengiessenZwei = new Task();
         taskblumengiessenZwei.setTitle("Blumen Gießen");
@@ -244,7 +244,7 @@ public class TaskController {
         taskblumengiessenZwei.setCreatedAt(Instant.now().minusSeconds(100));
         taskblumengiessenZwei.setDueDate(Instant.now().plusSeconds(90000));
         taskblumengiessenZwei.setAccepted(false);
-        taskBlumenGiessen.setAdressTask(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
+        taskblumengiessenZwei.getRequestUser().setAdressUser(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
 
 
         Task taskEinkaufen = new Task();
@@ -255,7 +255,7 @@ public class TaskController {
         taskEinkaufen.setCreatedAt(Instant.now().minusSeconds(100));
         taskEinkaufen.setDueDate(Instant.now().plusSeconds(10000));
         taskEinkaufen.setAccepted(false);
-        taskBlumenGiessen.setAdressTask(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
+        taskEinkaufen.getRequestUser().setAdressUser(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
 
         taskRepository.save(taskEinkaufen);
         taskRepository.save(taskblumengiessenZwei);

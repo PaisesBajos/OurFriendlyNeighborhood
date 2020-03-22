@@ -20,12 +20,14 @@
                 <div class="card-body" id="newrRequestSection">
                     <h2 class="card-title">Profil</h2>
                     <div class="col">
-                                       <span class="list-group-item"
-                                             th:text="${user.username}"><br>
-                                       </span>
-                        <p th:text="${user.firstName}"></p>
-                        <p th:text="${user.lastName}"></p>
-                        <p th:text="${user.plz}"></p>
+                        <span class="list-group-item"
+                              th:text="${user.username}"></span>
+                        <span class="list-group-item"
+                              th:text="${user.firstName}"></span>
+                        <span class="list-group-item"
+                              th:text="${user.lastName}"></span>
+                        <span class="list-group-item"
+                              th:text="${user.plz}"></span>
 
                         <!--                    <img th:if="${post.getUrlToImage() != null}" class="img-thumbnail"&ndash;&gt;-->
                         <!--                         th:src="@{/images/{postId}(postId = ${post.urlToImage})}" alt="">&ndash;&gt;-->
