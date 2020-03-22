@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -213,6 +214,28 @@ public class TaskController {
 //        redirectAttributes.addFlashAttribute("message",
 //                "You successfully uploaded " + file.getOriginalFilename() + "!");
 //    }
+
+    /**
+     * This method handels the helper user accepting a selected task
+     *
+     * @param taskDTO            is a task DTO object, that collects the input from the task form
+     * @param sessionUser        is the logged-in user
+     * @return the return value is a redirect to the task page
+     */
+    @PostMapping("/acceptTask")
+    public String acceptTask(@ModelAttribute("taskDTO") TaskDTO taskDTO, @ModelAttribute("sessionUser") User sessionUser) {
+        if (sessionUser!= null && sessionUser.getHelper()) {
+            Optional<Task> optionalTask = taskRepository.findById(taskDTO.getTaskId());
+            if (optionalTask.isPresent()) {
+                Task task = optionalTask.get();
+                task.setHelpUser(sessionUser);
+                task.setAccepted(true);
+                taskRepository.save(task);
+            }
+        }
+        return "redirect:/task";
+    }
+
 
     private void generateDummyData() {
         User userMaja = new User();
