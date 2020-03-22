@@ -90,7 +90,7 @@
                     <div th:if="${task.isAccepted()}" class="card-footer" th:id="'comments_'+${task.id}">
                         <div class="collapse" th:id="'commentSection_'+${task.id}" aria-expanded="false">
                             <div class="text-muted">
-                                <p>
+                                <p th:if="${task.getHelpUser()}">
                                     Helper:
                                     <strong class="text-success"><a th:text="${task.getHelpUser().getUsername()}"></a></strong>
                                 </p>
