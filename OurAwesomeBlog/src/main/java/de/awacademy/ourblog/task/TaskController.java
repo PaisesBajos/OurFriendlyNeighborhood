@@ -6,6 +6,7 @@ package de.awacademy.ourblog.task;
 import de.awacademy.ourblog.user.User;
 import de.awacademy.ourblog.user.UserRepository;
 import de.awacademy.ourblog.utils.AddressForGPS;
+import de.awacademy.ourblog.utils.CustomQueries;
 import de.awacademy.ourblog.utils.FileUploader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,15 +45,25 @@ public class TaskController {
      * @return the return value is the post.html
      */
     @GetMapping("/task")
-    public String task(Model model, @ModelAttribute("sessionUser") User sessionUser) {
+    public String task(Model model, @ModelAttribute("sessionUser") User sessionUser, @RequestParam(required = false) Integer sortingOption) {
 
         /////For Testing till address is available ///
         if (sessionUser != null) {
             sessionUser.setAddress(new AddressForGPS("München", "Lindwurmstraße", 115));
         }
 
-
         List<Task> tasks = taskRepository.findAllByOrderByCreatedAtDesc();
+
+        if(sortingOption!=null){
+            if(sortingOption==1 && sessionUser!=null){
+                tasks = CustomQueries.sortByDistance(tasks,sessionUser);
+            }
+            if(sortingOption==2){
+                tasks = taskRepository.findAllByHelpUserIsNull();
+            }
+
+        }
+
         //model.addAttribute("comment", new CommentDTO(""));
         //model.addAttribute("commentDTO", new CommentDTO(""));
         model.addAttribute("task", new TaskDTO("", ""));

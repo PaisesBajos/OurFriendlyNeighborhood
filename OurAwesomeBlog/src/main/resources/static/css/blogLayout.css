@@ -8,6 +8,10 @@ body {
     padding-bottom: 25px;
 }
 
+.input-group-append{
+    display:inline-block;
+}
+
 .formsubmit {
     margin-top: 2.5em;
 }

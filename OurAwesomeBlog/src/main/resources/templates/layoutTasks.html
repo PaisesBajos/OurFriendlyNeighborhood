@@ -6,13 +6,31 @@
 <body>
 <!-- Navigation -->
 <nav th:replace="layout :: navbar"></nav>
+
+
 <!-- Page Content -->
 <div class="container">
     <div class="row">
 
         <!-- Blog Entries Column -->
         <div class="col-md-12">
-            <h1 class="my-4">Tasks</h1>
+
+            <!--Sorting-->
+            <div class="input-group-append float-right">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Sort
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" th:if="${sessionUser!=null}" href="/task?sortingOption=1">Distance</a>
+                    <a class="dropdown-item" href="/task?sortingOption=2">Not Assigned</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+
+
+                </div>
+            </div>
+
+                <h1 >Tasks</h1>
+
             <!-- Blog Post -->
             <div th:each="task: ${tasks}">
 
@@ -43,21 +61,23 @@
                                     <!--                                    </form>-->
                                 </div>
 
-                                <form th:if="${sessionUser!=null and sessionUser.getHelper() and !task.isAccepted()}" th:action="@{/acceptTask}"
-                                      th:object="${taskDTO}"  modelAttribute="taskDTO"  method="post">
+                                <form th:if="${sessionUser!=null and sessionUser.getHelper() and !task.isAccepted()}"
+                                      th:action="@{/acceptTask}"
+                                      th:object="${taskDTO}" modelAttribute="taskDTO" method="post">
                                     <div class="form-group">
-                                            <input type="hidden" name="taskId" th:value="${task.id}">
+                                        <input type="hidden" name="taskId" th:value="${task.id}">
                                         <input class="btn btn-primary" type="submit" value="Accept Task">
                                     </div>
                                 </form>
                             </div>
                         </div>
-                        <p><strong>Due date:  </strong><a th:text="${task.getDueDateFormatted()}"></a>
+                        <p><strong>Due date: </strong><a th:text="${task.getDueDateFormatted()}"></a>
                         </p>
-                        <p><strong>Postal code:  </strong><a th:text="${task.getPlz()}"></a>
+                        <p><strong>Postal code: </strong><a th:text="${task.getPlz()}"></a>
                         </p>
 
-                        <p th:if="${sessionUser!=null}"><strong>Distance:  </strong><a th:text="${task.getDistance(sessionUser)}"> km</a>
+                        <p th:if="${sessionUser!=null}"><strong>Distance: </strong><a
+                                th:text="${task.getDistance(sessionUser)}"></a> km
                         </p>
                         <p class="collapse" th:id="'collapsePost_'+${task.id}" aria-expanded="false"
                            th:text="${task.text}"></p>
@@ -75,13 +95,13 @@
                                 </p>
                             </div>
 
-                                    <!--                                <a th:text="${task.helpUser.username}"></a>--
-                                                                    </p>
-                                                                   >
-                                                                </div>
+                            <!--                                <a th:text="${task.helpUser.username}"></a>--
+                                                            </p>
+                                                           >
+                                                        </div>
 
 
-                                                                                            SHOW WHO SIGNED UP FOR TASK-->
+                                                                                    SHOW WHO SIGNED UP FOR TASK-->
 
 
                             <!--                            <ul class="media-list">-->
