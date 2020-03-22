@@ -74,8 +74,7 @@
                         <p><strong>Due date: </strong><a th:text="${task.getDueDateFormatted()}"></a>
                         </p>
 
-                        <!-- ODO fix PLZ - Address is null -->
-<!--                        <p><strong>Postal code: </strong><a th:text="${task.getRequestUser().getAdressUser().getPlz()}"></a>-->
+                        <p><strong>Postal code: </strong><a th:text="${task.getRequestUser().getAdressUser().getPlz()}"></a>
                         </p>
 
                         <p th:if="${sessionUser!=null}"><strong>Distance: </strong><a

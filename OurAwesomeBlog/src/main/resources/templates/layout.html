@@ -26,7 +26,7 @@
                     <a class="nav-link" th:href="@{/login}" th:if="${sessionUser == null}">Sign In</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:if="${sessionUser != null and sessionUser.isHelper}"
+                    <a class="nav-link" th:if="${sessionUser != null and sessionUser.getHelper()}"
                        th:href="@{/profile}">My Profile-Page</a>
                 </li>
                 <li class="nav-item" th:if="${sessionUser != null}">
