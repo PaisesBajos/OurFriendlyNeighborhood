@@ -256,7 +256,7 @@ public class TaskController {
         userMaja.setLastName("Francetic");
         userMaja.setHelper(true);
 
-        Adress adress = new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a");
+        Adress adress = new Adress("Germany", "München", "85748", "Walther-von-Dyck-Str", "6", "");
         adressRepository.save(adress);
         userMaja.setAdressUser(adress);
 
@@ -264,10 +264,10 @@ public class TaskController {
         userMichael.setUsername("Michael");
         userMichael.setPassword("Dummy");
         userMichael.setFirstName("Michael");
-        userMichael.setFirstName("Holland");
+        userMichael.setLastName("Holland");
         userMichael.setHelper(true);
 
-        Adress adress1 = new Adress("Germany", "München", "404061", "Seitelstraße", "5", "a");
+        Adress adress1 = new Adress("Germany", "München", "80335", "Seidlstraße", "8", "");
         adressRepository.save(adress1);
         userMichael.setAdressUser(adress1);
 
@@ -275,8 +275,8 @@ public class TaskController {
         userMatze.setUsername("Matthias");
         userMatze.setPassword("Dummy");
         userMatze.setFirstName("Matthias");
-        userMatze.setFirstName("Hetz");
-        Adress adress2 = new Adress("Germany", "München", "404062", "Seitelstraße", "5", "a");
+        userMatze.setLastName("Hetz");
+        Adress adress2 = new Adress("Germany", "Karlsruhe", "76124", "Karl-Friedrich-Str", "10", "");
         adressRepository.save(adress2);
         userMatze.setAdressUser(adress2);
         userMatze.setHelper(true);
@@ -285,9 +285,9 @@ public class TaskController {
         userGerline.setUsername("Gerline");
         userGerline.setPassword("Dummy");
         userGerline.setFirstName("Gerlinde");
-        userGerline.setFirstName("Musterfrau");
+        userGerline.setLastName("Musterfrau");
         userGerline.setHelper(false);
-        Adress adress3 = new Adress("Germany", "München", "404063", "Seitelstraße", "5", "a");
+        Adress adress3 = new Adress("Germany", "München", "80331", "Viktualienmarkt", "3", "");
         adressRepository.save(adress3);
         userGerline.setAdressUser(adress3);
 
