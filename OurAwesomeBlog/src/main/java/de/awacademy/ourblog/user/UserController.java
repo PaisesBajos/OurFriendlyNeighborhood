@@ -84,12 +84,6 @@ public class UserController {
     @GetMapping("/profile")
     public String user(@ModelAttribute("sessionUser") User sessionUser, Model model) {
         if (sessionUser != null && sessionUser.getHelper()) {
-//            Post post = new Post();
-//            if (postImage != null) {
-//                post.setUrlToImage(postImage);
-//            }
-//            model.addAttribute("postImage", postImage);
-//            model.addAttribute("post", post);
             User user = userRepository.findById(sessionUser.getId()).get();
             model.addAttribute("user", user);
             model.addAttribute("task", new TaskDTO("", ""));
