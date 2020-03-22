@@ -2,11 +2,14 @@ package de.awacademy.ourblog.task;
 
 
 import de.awacademy.ourblog.user.User;
+import de.awacademy.ourblog.utils.AddressForGPS;
 import de.awacademy.ourblog.utils.DateTimeConverter;
+import de.awacademy.ourblog.utils.GetGPSfromApi;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 import static org.hibernate.annotations.CascadeType.DELETE;
@@ -37,6 +40,8 @@ public class Task {
 
     private String plz;
 
+
+
     public Task() {
     }
 
@@ -49,6 +54,11 @@ public class Task {
         this.createdAt = createdAt;
         this.dueDate = dueDate;
     }
+
+    public double getDistance(User sessionuser){
+        return Math.round(GetGPSfromApi.distanceBetweenAddresses(sessionuser.getAddress(),requestUser.getAddress())*10)/10.0;
+    }
+
 
     public long getId() {
         return id;
@@ -124,5 +134,9 @@ public class Task {
 
     public String getPostedAtFormatted() {
         return DateTimeConverter.getConvertedDateTime(createdAt);
+    }
+
+    public String getDueDateFormatted() {
+        return DateTimeConverter.getConvertedDateTime(dueDate);
     }
 }

@@ -6,18 +6,35 @@
 <body>
 <!-- Navigation -->
 <nav th:replace="layout :: navbar"></nav>
+
+
 <!-- Page Content -->
 <div class="container">
     <div class="row">
 
         <!-- Blog Entries Column -->
         <div class="col-md-12">
-            <h1 class="my-4">Tasks</h1>
+
+            <!--Sorting-->
+            <div class="input-group-append float-right">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Sort
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" th:if="${sessionUser!=null}" href="/task?sortingOption=1">Distance</a>
+                    <a class="dropdown-item" href="/task?sortingOption=2">Not Assigned</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+
+
+                </div>
+            </div>
+
+                <h1 >Tasks</h1>
+
             <!-- Blog Post -->
             <div th:each="task: ${tasks}">
 
                 <div class="card mb-4">
-                    <!--                    <img class="card-img-top" th:if="${task.getUrlToImage() != null}"-->
                     <!--                         th:src="@{/images/{postId}(postId = ${post.urlToImage})}" alt="">-->
                     <div class="card-body" th:id="'postSection_'+${task.id}">
 
@@ -26,6 +43,7 @@
                                 <div class="col-sm">
                                     <h2 class="card-title"><a th:text="${task.title}"></a></h2>
                                 </div>
+
                                 <div class="col-sm">
                                     <!--                                    <form th:if="${sessionUser!=null and sessionUser.admin == true}"-->
                                     <!--                                          th:object="${taskDTO}"-->
@@ -42,8 +60,25 @@
                                     <!--                                        </button>-->
                                     <!--                                    </form>-->
                                 </div>
+
+                                <form th:if="${sessionUser!=null and sessionUser.getHelper() and !task.isAccepted()}"
+                                      th:action="@{/acceptTask}"
+                                      th:object="${taskDTO}" modelAttribute="taskDTO" method="post">
+                                    <div class="form-group">
+                                        <input type="hidden" name="taskId" th:value="${task.id}">
+                                        <input class="btn btn-primary" type="submit" value="Accept Task">
+                                    </div>
+                                </form>
                             </div>
                         </div>
+                        <p><strong>Due date: </strong><a th:text="${task.getDueDateFormatted()}"></a>
+                        </p>
+                        <p><strong>Postal code: </strong><a th:text="${task.getPlz()}"></a>
+                        </p>
+
+                        <p th:if="${sessionUser!=null}"><strong>Distance: </strong><a
+                                th:text="${task.getDistance(sessionUser)}"></a> km
+                        </p>
                         <p class="collapse" th:id="'collapsePost_'+${task.id}" aria-expanded="false"
                            th:text="${task.text}"></p>
                         <a role="button" class="btn btn-primary collapsed collapseButton" data-toggle="collapse"
@@ -51,10 +86,22 @@
                            aria-expanded="false" th:aria-controls="'collapsePost_'+${task.id}"></a>
                     </div>
                     <!--Comment Section-->
-                    <div class="card-footer" th:id="'comments_'+${task.id}">
+                    <div th:if="${task.isAccepted()}" class="card-footer" th:id="'comments_'+${task.id}">
                         <div class="collapse" th:id="'commentSection_'+${task.id}" aria-expanded="false">
+                            <div class="text-muted">
+                                <p>
+                                    Helper:
+                                    <strong class="text-success"><a th:text="${task.helpUser.username}"></a></strong>
+                                </p>
+                            </div>
 
-                            <!--                            SHOW WHO SIGNED UP FOR TASK-->
+                            <!--                                <a th:text="${task.helpUser.username}"></a>--
+                                                            </p>
+                                                           >
+                                                        </div>
+
+
+                                                                                    SHOW WHO SIGNED UP FOR TASK-->
 
 
                             <!--                            <ul class="media-list">-->

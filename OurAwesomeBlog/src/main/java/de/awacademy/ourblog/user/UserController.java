@@ -110,6 +110,6 @@ public class UserController {
                 return "redirect:/admin";
             }
         }
-        return "redirect:/post";
+        return "redirect:/task";
     }
 }

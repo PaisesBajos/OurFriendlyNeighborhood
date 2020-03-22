@@ -16,6 +16,6 @@ public class HomeController {
      */
     @GetMapping("/")
     public String home(@ModelAttribute("sessionUser") User sessionUser) {
-        return "redirect:/post";
+        return "redirect:/task";
     }
 }

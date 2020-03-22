@@ -2,8 +2,11 @@ package de.awacademy.ourblog.task;
 
 
 //import de.awacademy.ourblog.comment.CommentRepository;
+
 import de.awacademy.ourblog.user.User;
 import de.awacademy.ourblog.user.UserRepository;
+import de.awacademy.ourblog.utils.AddressForGPS;
+import de.awacademy.ourblog.utils.CustomQueries;
 import de.awacademy.ourblog.utils.FileUploader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,11 +24,11 @@ import java.util.Optional;
 public class TaskController {
 
     private TaskRepository taskRepository;
-//    private CommentRepository commentRepository;
+    //    private CommentRepository commentRepository;
     private UserRepository userRepository;
 
     @Autowired
-    public TaskController(TaskRepository taskRepository,UserRepository userRepository) {
+    public TaskController(TaskRepository taskRepository, UserRepository userRepository) {
         this.taskRepository = taskRepository;
 
         this.userRepository = userRepository;
@@ -42,9 +45,25 @@ public class TaskController {
      * @return the return value is the post.html
      */
     @GetMapping("/task")
-    public String task(Model model) {
+    public String task(Model model, @ModelAttribute("sessionUser") User sessionUser, @RequestParam(required = false) Integer sortingOption) {
+
+        /////For Testing till address is available ///
+        if (sessionUser != null) {
+            sessionUser.setAddress(new AddressForGPS("München", "Lindwurmstraße", 115));
+        }
 
         List<Task> tasks = taskRepository.findAllByOrderByCreatedAtDesc();
+
+        if(sortingOption!=null){
+            if(sortingOption==1 && sessionUser!=null){
+                tasks = CustomQueries.sortByDistance(tasks,sessionUser);
+            }
+            if(sortingOption==2){
+                tasks = taskRepository.findAllByHelpUserIsNull();
+            }
+
+        }
+
         //model.addAttribute("comment", new CommentDTO(""));
         //model.addAttribute("commentDTO", new CommentDTO(""));
         model.addAttribute("task", new TaskDTO("", ""));
@@ -216,6 +235,16 @@ public class TaskController {
         taskBlumenGiessen.setAccepted(false);
         taskBlumenGiessen.setPlz("40590");
 
+        Task taskblumengiessenZwei = new Task();
+        taskblumengiessenZwei.setTitle("Blumen Gießen");
+        taskblumengiessenZwei.setText("Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.");
+        taskblumengiessenZwei.setHelpUser(userMichael);
+        taskblumengiessenZwei.setRequestUser(userMaja);
+        taskblumengiessenZwei.setCreatedAt(Instant.now().minusSeconds(100));
+        taskblumengiessenZwei.setDueDate(Instant.now().plusSeconds(90000));
+        taskblumengiessenZwei.setAccepted(false);
+        taskblumengiessenZwei.setPlz("40590");
+
 
         Task taskEinkaufen = new Task();
         taskEinkaufen.setTitle("Kleiner Einkauf");
@@ -228,6 +257,7 @@ public class TaskController {
         taskEinkaufen.setPlz("76133");
 
         taskRepository.save(taskEinkaufen);
+        taskRepository.save(taskblumengiessenZwei);
         taskRepository.save(taskBlumenGiessen);
 
 //
