@@ -80,25 +80,55 @@
                         <h2 class="card-title">My Tasks</h2>
 
                         <ul class="list-group" style="list-style-type:none">
-                            <li th:each="task: ${user.helperTaskList}">
+                            <div class="card mb-4" th:each="task: ${user.helperTaskList}">
+                                <div class="card-body" th:id="'postSection_'+${task.id}">
                                 <div class="form-group row">
-                                    <div class="col">
-                                       <span class="list-group-item"
-                                             th:text="${task.title}"><br>
-                                       </span>
-                                        <p th:text="${task.text}"></p>
-                                    </div>
-                                    <!--                                <div class="col">-->
-                                    <!--                                    <span th:if="${user.admin}" class="list-group-item float-right"-->
-                                    <!--                                          style="border: none">Admin</span>-->
-                                    <!--                                    <form th:if="${user.admin != true}" method="post" th:action="@{/admin}">-->
-                                    <!--                                        <input type="hidden" name="userId"-->
-                                    <!--                                               th:value="${user.id}">-->
-                                    <!--                                        <input class="btn btn-primary float-right" type="submit" value="Make Admin">-->
-                                    <!--                                    </form>-->
-                                    <!--                            </div>-->
+                                    <div class="col-sm">
+                                        <h3 class="card-title"><a th:text="${task.title}"></a></h3>
+
+                                        <!--                                        <span class="list-group-item"-->
+                                        <!--                                             th:text="${task.title}"><br>-->
+                                        <p><strong>Due date: </strong><a th:text="${task.getDueDateFormatted()}"></a>
+                                        </p>
+
+                                        <p><strong>Person in need : </strong>
+                                            <a th:text="${task.getRequestUser().getFirstName()}"></a>
+                                            <a th:text="${task.getRequestUser().getLastName()}"></a>
+                                        </p>
+
+                                        <p><strong>Address of the person in need: </strong>
+                                            <a th:text="${task.getRequestUser().getAdressUser().getStreet()}">  </a>
+                                            <a th:text="${task.getRequestUser().getAdressUser().getHouseNumber()}"></a>,
+                                            <a th:text="${task.getRequestUser().getAdressUser().getPlz()}"></a>
+                                            <a th:text="${task.getRequestUser().getAdressUser().getCity()}"></a>,
+                                            <a th:text="${task.getRequestUser().getAdressUser().getCountry()}"></a>
+                                        </p>
+
+                                        <p th:if="${sessionUser!=null}"><strong>Distance: </strong><a
+                                                th:text="${task.getDistance(sessionUser)}"></a> km
+                                        </p>
+                                        <p class="collapse" th:id="'collapsePost_'+${task.id}" aria-expanded="false"
+                                           th:text="${task.text}"></p>
+                                        <a role="button" class="btn btn-primary collapsed collapseButton" data-toggle="collapse"
+                                           th:href="'#collapsePost_'+${task.id}"
+                                           aria-expanded="false" th:aria-controls="'collapsePost_'+${task.id}"></a>
+                                        <!--                                <div class="col">-->
+                                        <!--                                    <span th:if="${user.admin}" class="list-group-item float-right"-->
+                                        <!--                                          style="border: none">Admin</span>-->
+                                        <!--                                    <form th:if="${user.admin != true}" method="post" th:action="@{/admin}">-->
+                                        <!--                                        <input type="hidden" name="userId"-->
+                                        <!--                                               th:value="${user.id}">-->
+                                        <!--                                        <input class="btn btn-primary float-right" type="submit" value="Make Admin">-->
+                                        <!--                                    </form>-->
+                                        <!--                            </div>-->
+                                        <div class="card-footer text-muted">
+                                            Posted on <a th:text="${task.getPostedAtFormatted()}"></a> by
+                                            <strong class="text-success"><a th:text="${task.requestUser.username}"></a></strong>
+                                        </div>
                                 </div>
-                            </li>
+                            </div>
+                                </div>
+                            </div>
                         </ul>
                     </div>
                 </div>
