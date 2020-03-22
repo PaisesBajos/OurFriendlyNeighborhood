@@ -21,6 +21,8 @@ public class Adress {
     private String houseNumber;
     private String addition;
 
+    @OneToOne
+    private User user;
 
     public Adress(){};
 
@@ -33,8 +35,7 @@ public class Adress {
         this.addition = addition;
     }
 
-    @OneToOne
-    private User user;
+
 
     public String getCountry() {
         return country;

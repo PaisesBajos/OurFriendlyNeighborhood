@@ -42,9 +42,9 @@ public interface TaskRepository extends CrudRepository<Task, Long> {
 
     List<Task> findAllByRequestUserOrderByDueDateDesc(User requestUser);
 
-    List<Task> findAllByRequestUserOrderByPlzAsc(User requestUser);
-
-    List<Task> findAllByRequestUserOrderByPlzDesc(User requestUser);
+//    List<Task> findAllByRequestUserOrderByPlzAsc(User requestUser);
+//
+//    List<Task> findAllByRequestUserOrderByPlzDesc(User requestUser);
 
 
     // find all tasks from a specific help user
@@ -59,8 +59,8 @@ public interface TaskRepository extends CrudRepository<Task, Long> {
 
     List<Task> findAllByHelpUserOrderByDueDateDesc(User helpUser);
 
-    List<Task> findAllByHelpUserOrderByPlzAsc(User helpUser);
-
-    List<Task> findAllByHelpUserOrderByPlzDesc(User helpUser);
+//    List<Task> findAllByHelpUserOrderByPlzAsc(User helpUser);
+//
+//    List<Task> findAllByHelpUserOrderByPlzDesc(User helpUser);
 
 }
