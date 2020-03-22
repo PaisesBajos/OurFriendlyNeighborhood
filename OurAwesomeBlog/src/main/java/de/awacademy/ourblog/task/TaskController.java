@@ -60,6 +60,17 @@ public class TaskController {
                 tasks = taskRepository.findAllByHelpUserIsNull();
             }
 
+            if(sortingOption==3){
+                tasks = taskRepository.findAllByOrderByDueDateAsc();
+            }
+
+            if(sortingOption==4){
+                tasks = taskRepository.findAllByOrderByCreatedAtDesc();
+            }
+
+            if(sortingOption==5){
+            //    tasks = taskRepository.findAllByOrderByPlzAsc();
+            }
         }
 
         //model.addAttribute("comment", new CommentDTO(""));
@@ -209,50 +220,60 @@ public class TaskController {
         userMaja.setPassword("Dummy");
         userMaja.setFirstName("Maja");
         userMaja.setLastName("Francetic");
-
+        userMaja.setAdressUser(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
 
         User userMichael = new User();
         userMichael.setUsername("Michael");
         userMichael.setPassword("Dummy");
         userMichael.setFirstName("Michael");
         userMichael.setFirstName("Holland");
+        userMichael.setAdressUser(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
 
+        User userMatze = new User();
+        userMatze.setUsername("Matthias");
+        userMatze.setPassword("Dummy");
+        userMatze.setFirstName("Matthias");
+        userMatze.setFirstName("Hetz");
+        userMatze.setAdressUser(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
 
+        User userGerline = new User();
+        userGerline.setUsername("Gerline");
+        userGerline.setPassword("Dummy");
+        userGerline.setFirstName("Gerlinde");
+        userGerline.setFirstName("Musterfrau");
+        userGerline.setHelper(false);
+        userMatze.setAdressUser(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
 
         userRepository.save(userMaja);
         userRepository.save(userMichael);
-
+        userRepository.save(userMatze);
+        userRepository.save(userGerline);
 
         Task taskBlumenGiessen = new Task();
         taskBlumenGiessen.setTitle("Blumen Gießen");
         taskBlumenGiessen.setText("Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.");
         taskBlumenGiessen.setHelpUser(userMichael);
-        taskBlumenGiessen.setRequestUser(userMaja);
+        taskBlumenGiessen.setRequestUser(userGerline);
         taskBlumenGiessen.setCreatedAt(Instant.now().minusSeconds(100));
         taskBlumenGiessen.setDueDate(Instant.now().plusSeconds(90000));
         taskBlumenGiessen.setAccepted(false);
-        taskBlumenGiessen.getRequestUser().setAdressUser(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
 
         Task taskblumengiessenZwei = new Task();
         taskblumengiessenZwei.setTitle("Blumen Gießen");
         taskblumengiessenZwei.setText("Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.");
-        taskblumengiessenZwei.setHelpUser(userMichael);
-        taskblumengiessenZwei.setRequestUser(userMaja);
+        taskblumengiessenZwei.setHelpUser(userMaja);
+        taskblumengiessenZwei.setRequestUser(userGerline);
         taskblumengiessenZwei.setCreatedAt(Instant.now().minusSeconds(100));
         taskblumengiessenZwei.setDueDate(Instant.now().plusSeconds(90000));
         taskblumengiessenZwei.setAccepted(false);
-        taskblumengiessenZwei.getRequestUser().setAdressUser(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
-
 
         Task taskEinkaufen = new Task();
         taskEinkaufen.setTitle("Kleiner Einkauf");
         taskEinkaufen.setText("Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.");
-        taskEinkaufen.setHelpUser(userMaja);
-        taskEinkaufen.setRequestUser(userMichael);
+        taskEinkaufen.setRequestUser(userGerline);
         taskEinkaufen.setCreatedAt(Instant.now().minusSeconds(100));
         taskEinkaufen.setDueDate(Instant.now().plusSeconds(10000));
         taskEinkaufen.setAccepted(false);
-        taskEinkaufen.getRequestUser().setAdressUser(new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a"));
 
         taskRepository.save(taskEinkaufen);
         taskRepository.save(taskblumengiessenZwei);
