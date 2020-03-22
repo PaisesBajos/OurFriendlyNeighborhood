@@ -22,10 +22,10 @@
                     <div class="col">
                                        <span class="list-group-item"
                                              th:text="${user.username}"><br>
-                                           <p th:text="${user.firstName}"></p>
-                                           <p th:text="${user.lastName}"></p>
-                                           <p th:text="${user.address}"></p>
                                        </span>
+                        <p th:text="${user.firstName}"></p>
+                        <p th:text="${user.lastName}"></p>
+                        <p th:text="${user.plz}"></p>
 
                         <!--                    <img th:if="${post.getUrlToImage() != null}" class="img-thumbnail"&ndash;&gt;-->
                         <!--                         th:src="@{/images/{postId}(postId = ${post.urlToImage})}" alt="">&ndash;&gt;-->
@@ -66,8 +66,8 @@
                                     <div class="col">
                                        <span class="list-group-item"
                                              th:text="${task.title}"><br>
-                                           <p th:text="${task.text}"></p>
                                        </span>
+                                        <p th:text="${task.text}"></p>
                                     </div>
                                     <!--                                <div class="col">-->
                                     <!--                                    <span th:if="${user.admin}" class="list-group-item float-right"-->

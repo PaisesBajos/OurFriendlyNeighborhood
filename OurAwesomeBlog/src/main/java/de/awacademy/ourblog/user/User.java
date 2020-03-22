@@ -28,6 +28,8 @@ public class User {
 
     private boolean isAdmin;
 
+    private String plz;
+
     @Transient
     Adress adressUser=new Adress();
 
@@ -162,5 +164,13 @@ public class User {
 
     public void setAdressUser(Adress adressUser) {
         this.adressUser = adressUser;
+    }
+
+    public String getPlz() {
+        return plz;
+    }
+
+    public void setPlz(String plz) {
+        this.plz = plz;
     }
 }
