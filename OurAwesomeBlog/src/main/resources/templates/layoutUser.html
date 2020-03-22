@@ -15,21 +15,37 @@
 
             <h1 class="my-4">User Profile
             </h1>
+            <!--                    <div class="container">-->
+            <!--                        <div id="heading" class="row">-->
+            <!--                            -->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                    <p><strong>Due date: </strong><a th:text="${task.getDueDateFormatted()}"></a>-->
+            <!--                    </p>-->
+
+            <!--                    <p><strong>Postal code: </strong><a th:text="${task.getRequestUser().getAdressUser().getPlz()}"></a>-->
+            <!--                    </p>-->
+
 
             <div class="card mb-4">
                 <div class="card-body" id="newrRequestSection">
-                    <h2 class="card-title">Profil</h2>
+                    <h2 class="card-title">Profile</h2>
                     <div class="col">
-                        <span class="list-group-item"
-                              th:text="${user.username}"></span>
-                        <span class="list-group-item"
-                              th:text="${user.firstName}"></span>
-                        <span class="list-group-item"
-                              th:text="${user.lastName}"></span>
-                        <span class="list-group-item"
-                              th:text="${user.plz}"></span>
+                        <span class="list-group-item"><strong>Username:  </strong>
+                            <a th:text="${user.username}"></a></span>
+                        <span class="list-group-item"><strong>First name:  </strong>
+                            <a th:text="${user.firstName}"></a></span>
+                        <span class="list-group-item"><strong>Last name:  </strong>
+                            <a th:text="${user.lastName}"></a></span>
+                        <span class="list-group-item"><strong>Address:  </strong>
+                            <a th:text="${user.getAdressUser().getStreet()}">  </a>
+                            <a th:text="${user.getAdressUser().getHouseNumber()}"></a>,
+                            <a th:text="${user.getAdressUser().getPlz()}"></a>
+                            <a th:text="${user.getAdressUser().getCity()}"></a>,
+                        <a th:text="${user.getAdressUser().getCountry()}"></a>
+                        </span>
 
-                        <!--                    <img th:if="${post.getUrlToImage() != null}" class="img-thumbnail"&ndash;&gt;-->
+                        <!--                                          <img th:if="${post.getUrlToImage() != null}" class="img-thumbnail"&ndash;&gt;&ndash;&gt;-->
                         <!--                         th:src="@{/images/{postId}(postId = ${post.urlToImage})}" alt="">&ndash;&gt;-->
 
                         <!--                    <form th:action="@{/post(postImage=${postImage})}" th:object="${post}" method="post">-->
@@ -60,7 +76,8 @@
                         <!--                </div>-->
                         <!--                <br>-->
                         <!--                <div class="card-body" id="usersSection">-->
-                        <h2 class="card-title">Meine Tasklist</h2>
+                        <br>
+                        <h2 class="card-title">My Tasks</h2>
 
                         <ul class="list-group" style="list-style-type:none">
                             <li th:each="task: ${user.helperTaskList}">
