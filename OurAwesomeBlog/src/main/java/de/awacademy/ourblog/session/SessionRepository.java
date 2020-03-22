@@ -12,6 +12,4 @@ public interface SessionRepository extends CrudRepository<Session, String> {
 
     Optional<Session> findByIdAndExpiresAtAfter(String id, Instant expiresAt);
 
-    Optional<User> findById(Long id);
-
 }
