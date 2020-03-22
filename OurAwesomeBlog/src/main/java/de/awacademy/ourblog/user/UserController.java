@@ -1,6 +1,9 @@
 package de.awacademy.ourblog.user;
 
 
+import de.awacademy.ourblog.session.SessionRepository;
+import de.awacademy.ourblog.task.Task;
+import de.awacademy.ourblog.task.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,11 +22,12 @@ import java.util.Optional;
 public class UserController {
 
     private UserRepository userRepository;
+    private TaskRepository taskRepository;
+    private SessionRepository sessionRepository;
 
     @Autowired
     public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+        this.userRepository = userRepository; this.taskRepository = taskRepository; this.sessionRepository = sessionRepository;}
 
     /**
      * This method displays a register form
@@ -67,30 +71,30 @@ public class UserController {
         return "redirect:/login";
     }
 
-//    /**
-//     * This method displays the admin page
-//     *
-//     * @param sessionUser is the logged-in user
-//     * @param model       contains the attributes used for communication between the Java code and the
-//     *                    HTML template
-//     * @return the return value is the layoutAdmin.html, or a redirect to the post page, in case
-//     * the sessionUser is not an admin
-//     */
-//    @GetMapping("/admin")
-//    public String admin(@RequestParam(required = false) String postImage, @ModelAttribute("sessionUser") User sessionUser, Model model) {
-//        if (sessionUser != null && sessionUser.getAdmin()) {
+    /**
+     * This method displays the profile page
+     *
+     * @param sessionUser is the logged-in user
+     * @param model       contains the attributes used for communication between the Java code and the
+     *                    HTML template
+     * @return the return value is the layoutAdmin.html, or a redirect to the post page, in case
+     * the sessionUser is not an admin
+     */
+    @GetMapping("/profile")
+    public String user(@ModelAttribute("sessionUser") User sessionUser, Model model) {
+        if (sessionUser != null && sessionUser.getHelper()) {
 //            Post post = new Post();
 //            if (postImage != null) {
 //                post.setUrlToImage(postImage);
 //            }
 //            model.addAttribute("postImage", postImage);
 //            model.addAttribute("post", post);
-//            List<User> users = userRepository.findAll();
-//            model.addAttribute("users", users);
-//            return "layoutAdmin";
-//        }
-//        return "redirect:/post";
-//    }
+            User user = userRepository.findById(sessionUser.getId()).get();
+            model.addAttribute("user", user);
+            return "layoutUser";
+        }
+        return "redirect:/";
+    }
 
     /**
      * This method defines a user as an admin

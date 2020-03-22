@@ -3,6 +3,7 @@ package de.awacademy.ourblog.task;
 
 import de.awacademy.ourblog.user.User;
 import de.awacademy.ourblog.utils.AddressForGPS;
+import de.awacademy.ourblog.utils.Adress;
 import de.awacademy.ourblog.utils.DateTimeConverter;
 import de.awacademy.ourblog.utils.GetGPSfromApi;
 import org.hibernate.annotations.Cascade;
@@ -38,8 +39,8 @@ public class Task {
 
     private Instant dueDate;
 
-    private String plz;
-
+    @Transient
+    public Adress adressTask;
 
 
     public Task() {
@@ -124,19 +125,20 @@ public class Task {
         this.dueDate = dueDate;
     }
 
-    public String getPlz() {
-        return plz;
-    }
-
-    public void setPlz(String plz) {
-        this.plz = plz;
-    }
-
     public String getPostedAtFormatted() {
         return DateTimeConverter.getConvertedDateTime(createdAt);
     }
 
     public String getDueDateFormatted() {
         return DateTimeConverter.getConvertedDateTime(dueDate);
+    }
+
+
+    public Adress getAdressTask() {
+        return adressTask;
+    }
+
+    public void setAdressTask(Adress adressTask) {
+        this.adressTask = adressTask;
     }
 }

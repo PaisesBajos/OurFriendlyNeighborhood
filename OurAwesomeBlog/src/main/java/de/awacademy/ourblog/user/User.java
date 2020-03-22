@@ -1,5 +1,6 @@
 package de.awacademy.ourblog.user;
 
+import de.awacademy.ourblog.utils.Adress;
 import de.awacademy.ourblog.session.Session;
 import de.awacademy.ourblog.task.Task;
 import de.awacademy.ourblog.utils.AddressForGPS;
@@ -26,6 +27,9 @@ public class User {
     private boolean isHelper;
 
     private boolean isAdmin;
+
+    @Transient
+    Adress adressUser=new Adress();
 
     ///Just Temp for testing
     @Transient
@@ -150,5 +154,13 @@ public class User {
 
     public void setAddress(AddressForGPS address) {
         this.address = address;
+    }
+
+    public Adress getAdressUser() {
+        return adressUser;
+    }
+
+    public void setAdressUser(Adress adressUser) {
+        this.adressUser = adressUser;
     }
 }
