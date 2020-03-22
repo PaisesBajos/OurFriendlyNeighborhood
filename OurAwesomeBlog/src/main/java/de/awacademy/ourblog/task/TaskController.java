@@ -68,6 +68,7 @@ public class TaskController {
             }
 
             if(sortingOption==5){
+                tasks = taskRepository.findAllByOrderByRequestUser_AdressUser_Plz();
             //    tasks = taskRepository.findAllByOrderByPlzAsc();
             }
         }
@@ -219,6 +220,7 @@ public class TaskController {
         userMaja.setPassword("Dummy");
         userMaja.setFirstName("Maja");
         userMaja.setLastName("Francetic");
+        userMaja.setHelper(true);
 
         Adress adress = new Adress("Germany", "München", "404060", "Seitelstraße", "5", "a");
         adressRepository.save(adress);
@@ -229,15 +231,21 @@ public class TaskController {
         userMichael.setPassword("Dummy");
         userMichael.setFirstName("Michael");
         userMichael.setFirstName("Holland");
+        userMaja.setHelper(true);
 
-        userMichael.setAdressUser(adress);
+        Adress adress1 = new Adress("Germany", "München", "404061", "Seitelstraße", "5", "a");
+        adressRepository.save(adress1);
+        userMichael.setAdressUser(adress1);
 
         User userMatze = new User();
         userMatze.setUsername("Matthias");
         userMatze.setPassword("Dummy");
         userMatze.setFirstName("Matthias");
         userMatze.setFirstName("Hetz");
-        userMatze.setAdressUser(adress);
+        Adress adress2 = new Adress("Germany", "München", "404062", "Seitelstraße", "5", "a");
+        adressRepository.save(adress2);
+        userMatze.setAdressUser(adress2);
+        userMaja.setHelper(true);
 
         User userGerline = new User();
         userGerline.setUsername("Gerline");
@@ -245,7 +253,9 @@ public class TaskController {
         userGerline.setFirstName("Gerlinde");
         userGerline.setFirstName("Musterfrau");
         userGerline.setHelper(false);
-        userGerline.setAdressUser(adress);
+        Adress adress3 = new Adress("Germany", "München", "404063", "Seitelstraße", "5", "a");
+        adressRepository.save(adress3);
+        userGerline.setAdressUser(adress3);
 
         userRepository.save(userMaja);
         userRepository.save(userMichael);
@@ -256,7 +266,7 @@ public class TaskController {
         taskBlumenGiessen.setTitle("Blumen Gießen");
         taskBlumenGiessen.setText("Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.");
         taskBlumenGiessen.setHelpUser(userMichael);
-        taskBlumenGiessen.setRequestUser(userGerline);
+        taskBlumenGiessen.setRequestUser(userMaja);
         taskBlumenGiessen.setCreatedAt(Instant.now().minusSeconds(100));
         taskBlumenGiessen.setDueDate(Instant.now().plusSeconds(90000));
         taskBlumenGiessen.setAccepted(false);
@@ -265,7 +275,7 @@ public class TaskController {
         taskblumengiessenZwei.setTitle("Blumen Gießen");
         taskblumengiessenZwei.setText("Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.Hallo liebe Nachbarschaft. Ich benötige Hilfe beim Blumen gießen.");
         taskblumengiessenZwei.setHelpUser(userMaja);
-        taskblumengiessenZwei.setRequestUser(userGerline);
+        taskblumengiessenZwei.setRequestUser(userMichael);
         taskblumengiessenZwei.setCreatedAt(Instant.now().minusSeconds(100));
         taskblumengiessenZwei.setDueDate(Instant.now().plusSeconds(90000));
         taskblumengiessenZwei.setAccepted(false);
@@ -273,7 +283,7 @@ public class TaskController {
         Task taskEinkaufen = new Task();
         taskEinkaufen.setTitle("Kleiner Einkauf");
         taskEinkaufen.setText("Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.Liebe Nachbarn, kann mir jemand einen kleinen Einkauf erledigen? 1 Stück Butter, 1 kg Mehl und 6 Eier.");
-        taskEinkaufen.setRequestUser(userGerline);
+        taskEinkaufen.setRequestUser(userMatze);
         taskEinkaufen.setCreatedAt(Instant.now().minusSeconds(100));
         taskEinkaufen.setDueDate(Instant.now().plusSeconds(10000));
         taskEinkaufen.setAccepted(false);

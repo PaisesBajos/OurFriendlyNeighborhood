@@ -17,6 +17,7 @@ public interface TaskRepository extends CrudRepository<Task, Long> {
 
     // Find all tasks
 
+
     List<Task> findAllByOrderByCreatedAtDesc();
 
     List<Task> findAllByOrderByCreatedAtAsc();
@@ -24,6 +25,8 @@ public interface TaskRepository extends CrudRepository<Task, Long> {
     List<Task> findAllByOrderByDueDateAsc();
 
     List<Task> findAllByOrderByDueDateDesc();
+
+    List<Task> findAllByOrderByRequestUser_AdressUser_Plz();
 
 //    List<Task> findAllByOrderByPlzAsc();
 //
